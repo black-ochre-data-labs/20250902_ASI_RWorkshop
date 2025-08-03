@@ -25,11 +25,11 @@ All data for the session is available [here](data.zip).
 |:---|:---|:---|---:|
 | 8:30 - 9:00 | Installation Help Session | [Installation](installation.html) | 30min |
 | 9:00 - 10:30 | General Introduction | [Introduction](intro.html) | 20min |
-|  | RStudio <br>R Scripts | [RStudio](rstudio.html) |  |
+|  | RStudio <br>R Scripts | [RStudio](rstudio.html) | 45min |
 |  | Loading Data Into R<br>Data Frames | [Data Import](data_import.html) |  |
 | 10:30 - 11:00 | Morning Tea Break |  | 30min |
 | 11:00 - 13:00 | Loading Data Into R (cont.) |  | 15min |
-|  | Simple Visualisations | [Introduction to `ggplot2`](basic_ggplot2.html) |  |
+|  | Simple Visualisation | [Introduction to `ggplot2`](basic_ggplot2.html) |  |
 |  | Working With Text | [Working With Text](text.html) |  |
 
 ## Wednesday November 22nd
