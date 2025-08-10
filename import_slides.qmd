@@ -188,7 +188,7 @@ Mention my former collaborator who would often have completely different results
 
 Click on the `pigs.csv` and choose `Import Dataset` then **stop**!
 
-![](assets/importGUI.png){width="1000px"}
+![](assets/importGUI.png){width="1200px" fig-align="left"}
 
 
 <p style="text-align: center;">(Click `Update` if you don't see this)</p>
@@ -199,7 +199,7 @@ Click on the `pigs.csv` and choose `Import Dataset` then **stop**!
 
 <br>
 
-![We have a preview of the data](assets/importGUI_preview.png){width="1000px"}
+![We have a preview of the data](assets/importGUI_preview.png){width="1200px" fig-align="left"}
 
 ::: {.notes}
 - This is another preview of the data before we import it
@@ -212,7 +212,7 @@ Click on the `pigs.csv` and choose `Import Dataset` then **stop**!
 
 <br>
 
-![We also have a preview of the code we're about to execute](assets/importGUI_code.png){width="1000px"}
+![We also have a preview of the code we're about to execute](assets/importGUI_code.png){width="1200px" fig-align="left"}
 
 
 ## The Preview Window {.slide-only .unlisted}
@@ -235,7 +235,7 @@ Click on the `pigs.csv` and choose `Import Dataset` then **stop**!
 The code we copied has 3 lines:
 
 ```{r import-code, eval=FALSE}
-#| code-line-numbers: '1'
+#| code-line-numbers: '1|1'
 library(readr)
 pigs <- read_csv("data/pigs.csv")
 View(pigs)
@@ -258,7 +258,7 @@ pigs <- read_csv("data/pigs.csv")
 View(pigs)
 ```
 
-- This line actually loads the data into your `R Environment`
+- The 2^nd^ line actually loads the data into your `R Environment`
 - It created an object named `pigs` by using the file name (pigs.csv)
 - Can change this name if we wish
 
@@ -275,7 +275,7 @@ View(pigs)
 ```
 
 - Opens a preview in a familiar `Excel-like` format
-    + I personally **never** use this
+    + I personally don't use this
 
 Close the preview by clicking the cross
 
@@ -316,6 +316,13 @@ Realistically we only need to preview it the first time. Having that preview ope
 - `R` equivalent to a spreadsheet
     - Missing values (blank cells) are usually filled with `NA`
     - **Must** have column names $\implies$ row names becoming less common
+    
+::: {.fragment}
+    
+- A `tibble` is a `data.frame` which prints nicely to your screen
+    + Cannot have rownames though
+    
+:::
 
 ## Data Frame Objects {.slide-only .unlisted}
 
@@ -369,18 +376,30 @@ I personally find this more informative than `View()`
 
 - `data.frame` objects can be subset using square brackets `[row, col]`
 
-:::: {.columns}
-::: {.column}
 
 ```{r subset-pigs-col1}
 pigs[1:3, ]
 ```
 
-:::
+## Data Frame Objects {.slide-only .unlisted}
+
+- Columns can be selected by position or name
+
+:::: {.columns}
+
 ::: {.column}
-::: {.fragment}
 
 ```{r subset-pigs-col2}
+pigs[, 1]
+```
+
+:::
+
+::: {.column}
+
+::: {.fragment}
+
+```{r subset-pigs-col4}
 pigs[, "len"]
 ```
 
@@ -396,7 +415,7 @@ pigs[, "len"]
 pigs$len
 ```
 
-::: {.incremental}
+## Data Frame Objects {.slide-only .unlisted}
 
 - Each column is a *vector*
     + Exactly like a spreadsheet column
@@ -405,12 +424,10 @@ pigs$len
     + `len` values are all `numeric` (or `dbl`)
 <!-- - All types are given when printing a `tibble` -->
 
-:::
-
 
 ## Tibble Objects
 
-- `readr` uses a variant called a `tbl_df` or `tbl` (pronounced tibble) 
+- `readr` uses a variant called a `tbl_df` or `tbl` (pronounced tibble)
     + A `data.frame` with nice bonus features (e.g. prints a summary only)
     + Similar to a SQL table
     + Can *only have row numbers for row names*
@@ -647,8 +664,8 @@ Try clicking/unclicking a few more & try understand the consequences
 - The newer (`readr`) version is:
     + slightly faster
     + more user-friendly
-    + creates fewer issues
     + gives informative messages
+    + always returns a `tibble`
     
 ::: {.fragment}
     

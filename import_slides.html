@@ -411,7 +411,11 @@ Dr Stevie Pederson
 <h2>Using the GUI To Load Data</h2>
 <div style="font-size:95%">
 <p>Click on the <code>pigs.csv</code> and choose <code>Import Dataset</code> then <strong>stop</strong>!</p>
-<p><img data-src="assets/importGUI.png" width="1000"></p>
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="assets/importGUI.png" class="quarto-figure quarto-figure-left" width="1200"></p>
+</figure>
+</div>
 <p style="text-align: center;">
 (Click <code>Update</code> if you don’t see this)
 </p>
@@ -421,7 +425,7 @@ Dr Stevie Pederson
 <h2>The Preview Window</h2>
 <p><br></p>
 
-<img data-src="assets/importGUI_preview.png" width="1000" class="r-stretch quarto-figure-center"><p class="caption">We have a preview of the data</p><aside class="notes">
+<img data-src="assets/importGUI_preview.png" width="1200" class="r-stretch quarto-figure-left"><p class="caption">We have a preview of the data</p><aside class="notes">
 <ul>
 <li>This is another preview of the data before we import it</li>
 <li>There are 3 columns: <code>len</code>, <code>supp</code> and <code>dose</code>
@@ -446,7 +450,7 @@ Dr Stevie Pederson
 <h2>The Preview Window</h2>
 <p><br></p>
 
-<img data-src="assets/importGUI_code.png" width="1000" class="r-stretch quarto-figure-center"><p class="caption">We also have a preview of the code we’re about to execute</p></section>
+<img data-src="assets/importGUI_code.png" width="1200" class="r-stretch quarto-figure-left"><p class="caption">We also have a preview of the code we’re about to execute</p></section>
 <section id="the-preview-window-2" class="slide level2 slide-only unlisted">
 <h2>The Preview Window</h2>
 <ol type="1">
@@ -467,7 +471,7 @@ Dr Stevie Pederson
 <h2>What just happened?</h2>
 <p>The code we copied has 3 lines:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(readr)</span>
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(readr)</span>
 <span id="cb1-2"><a href=""></a>pigs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/pigs.csv"</span>)</span>
 <span id="cb1-3"><a href=""></a><span class="fu">View</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -490,7 +494,7 @@ Dr Stevie Pederson
 <span id="cb2-3"><a href=""></a><span class="fu">View</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>This line actually loads the data into your <code>R Environment</code></li>
+<li>The 2<sup>nd</sup> line actually loads the data into your <code>R Environment</code></li>
 <li>It created an object named <code>pigs</code> by using the file name (pigs.csv)</li>
 <li>Can change this name if we wish</li>
 </ul>
@@ -506,7 +510,7 @@ Dr Stevie Pederson
 <ul>
 <li>Opens a preview in a familiar <code>Excel-like</code> format
 <ul>
-<li>I personally <strong>never</strong> use this</li>
+<li>I personally don’t use this</li>
 </ul></li>
 </ul>
 <p>Close the preview by clicking the cross</p>
@@ -570,6 +574,14 @@ Dr Stevie Pederson
 <li><strong>Must</strong> have column names <span class="math inline">\(\implies\)</span> row names becoming less common</li>
 </ul></li>
 </ul>
+<div class="fragment">
+<ul>
+<li>A <code>tibble</code> is a <code>data.frame</code> which prints nicely to your screen
+<ul>
+<li>Cannot have rownames though</li>
+</ul></li>
+</ul>
+</div>
 </section>
 <section id="data-frame-objects-2" class="slide level2 slide-only unlisted">
 <h2>Data Frame Objects</h2>
@@ -616,8 +628,6 @@ Dr Stevie Pederson
 <ul>
 <li><code>data.frame</code> objects can be subset using square brackets <code>[row, col]</code></li>
 </ul>
-<div class="columns">
-<div class="column">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>pigs[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -629,10 +639,37 @@ Dr Stevie Pederson
 3   7.3 VC    Low  </code></pre>
 </div>
 </div>
+</section>
+<section id="data-frame-objects-4" class="slide level2 slide-only unlisted">
+<h2>Data Frame Objects</h2>
+<ul>
+<li>Columns can be selected by position or name</li>
+</ul>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>pigs[, <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 1
+     len
+   &lt;dbl&gt;
+ 1   4.2
+ 2  11.5
+ 3   7.3
+ 4   5.8
+ 5   6.4
+ 6  10  
+ 7  11.2
+ 8  11.2
+ 9   5.2
+10   7  
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
 </div><div class="column">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>pigs[, <span class="st">"len"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>pigs[, <span class="st">"len"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 1
      len
@@ -653,13 +690,13 @@ Dr Stevie Pederson
 </div>
 </div></div>
 </section>
-<section id="data-frame-objects-4" class="slide level2 slide-only unlisted">
+<section id="data-frame-objects-5" class="slide level2 slide-only unlisted">
 <h2>Data Frame Objects</h2>
 <ul>
 <li>Entire columns can also be selected using <code>$</code> <br><span class="math inline">\(\implies\)</span> doesn’t return a <code>data.frame</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>pigs<span class="sc">$</span>len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>pigs<span class="sc">$</span>len</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  4.2 11.5  7.3  5.8  6.4 10.0 11.2 11.2  5.2  7.0 16.5 16.5 15.2 17.3 22.5
 [16] 17.3 13.6 14.5 18.8 15.5 23.6 18.5 33.9 25.5 26.4 32.5 26.7 21.5 23.3 29.5
@@ -667,15 +704,18 @@ Dr Stevie Pederson
 [46] 25.2 25.8 21.2 14.5 27.3 25.5 26.4 22.4 24.5 24.8 30.9 26.4 27.3 29.4 23.0</code></pre>
 </div>
 </div>
+</section>
+<section id="data-frame-objects-6" class="slide level2 slide-only unlisted">
+<h2>Data Frame Objects</h2>
 <ul>
-<li class="fragment">Each column is a <em>vector</em>
+<li>Each column is a <em>vector</em>
 <ul>
-<li class="fragment">Exactly like a spreadsheet column</li>
+<li>Exactly like a spreadsheet column</li>
 </ul></li>
-<li class="fragment">Vectors <strong>only contain one data type</strong>
+<li>Vectors <strong>only contain one data type</strong>
 <ul>
-<li class="fragment"><code>logical</code>, <code>integer</code>, <code>numeric</code> (i.e.&nbsp;doubles), <code>character</code></li>
-<li class="fragment"><code>len</code> values are all <code>numeric</code> (or <code>dbl</code>) <!-- - All types are given when printing a `tibble` --></li>
+<li><code>logical</code>, <code>integer</code>, <code>numeric</code> (i.e.&nbsp;doubles), <code>character</code></li>
+<li><code>len</code> values are all <code>numeric</code> (or <code>dbl</code>) <!-- - All types are given when printing a `tibble` --></li>
 </ul></li>
 </ul>
 </section>
@@ -707,7 +747,7 @@ Dr Stevie Pederson
 </ul>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -719,8 +759,8 @@ Dr Stevie Pederson
 <li>Some additional ways to inspect data frames are:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs)</span>
-<span id="cb13-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs)</span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>glimpse</code> is loaded with <code>library(tidyverse)</code> (not part of <code>readr</code>)</li>
@@ -736,8 +776,8 @@ Dr Stevie Pederson
 <section id="functions-in-r" class="slide level2">
 <h2>Functions in <code>R</code></h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs)</span>
-<span id="cb14-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs)</span>
+<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Here we have called the functions 1) <code>head()</code> and 2) <code>glimpse()</code>
@@ -749,7 +789,7 @@ Dr Stevie Pederson
 <ul>
 <li>Call the help page for <code>head()</code></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>?head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a>?head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(if you get multiple options, choose the one from <code>utils</code>)</p>
 </div>
 </section>
@@ -758,9 +798,9 @@ Dr Stevie Pederson
 <ul>
 <li>The key place to look at is</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x, ...)</span>
-<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Default S3 method:</span></span>
-<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x, <span class="at">n =</span> <span class="dv">6</span>L, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x, ...)</span>
+<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Default S3 method:</span></span>
+<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(x, <span class="at">n =</span> <span class="dv">6</span>L, ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>there are two arguments to <code>head()</code> <span class="math inline">\(\implies\)</span> <code>x</code> and <code>n</code>
 <ul>
@@ -804,7 +844,7 @@ Dr Stevie Pederson
 <li>We can change the number of rows shown to us</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
@@ -826,7 +866,7 @@ Dr Stevie Pederson
 <div class="columns">
 <div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pigs, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
@@ -839,7 +879,7 @@ Dr Stevie Pederson
 </div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> pigs, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> pigs, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
@@ -860,7 +900,7 @@ Dr Stevie Pederson
 <div class="columns">
 <div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> pigs, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">x =</span> pigs, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
@@ -873,7 +913,7 @@ Dr Stevie Pederson
 </div>
 </div><div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">x =</span> pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">x =</span> pigs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
     len supp  dose 
@@ -893,7 +933,7 @@ Dr Stevie Pederson
 <li>Check the help page</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a>?read_csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a>?read_csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>We have four functions shown but stick to <code>read_csv()</code></li>
@@ -901,22 +941,22 @@ Dr Stevie Pederson
 </section>
 <section id="understanding-read_csv-1" class="slide level2 slide-only unlisted">
 <h2>Understanding <code>read_csv()</code></h2>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
-<span id="cb28-2"><a href="" aria-hidden="true" tabindex="-1"></a>  file,</span>
-<span id="cb28-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
-<span id="cb28-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
-<span id="cb28-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb28-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>, <span class="at">comment =</span> <span class="st">""</span>,</span>
-<span id="cb28-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb28-8"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
-<span id="cb28-9"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
-<span id="cb28-10"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span>,</span>
-<span id="cb28-11"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
-<span id="cb28-12"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
-<span id="cb28-13"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
-<span id="cb28-14"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb28-15"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
-<span id="cb28-16"><a href="" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(</span>
+<span id="cb30-2"><a href="" aria-hidden="true" tabindex="-1"></a>  file,</span>
+<span id="cb30-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="cn">TRUE</span>, <span class="at">col_types =</span> <span class="cn">NULL</span>, <span class="at">col_select =</span> <span class="cn">NULL</span>,</span>
+<span id="cb30-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="cn">NULL</span>, <span class="at">locale =</span> <span class="fu">default_locale</span>(), </span>
+<span id="cb30-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">na =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>), <span class="at">quoted_na =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">quote =</span> <span class="st">"</span><span class="sc">\"</span><span class="st">"</span>, <span class="at">comment =</span> <span class="st">""</span>,</span>
+<span id="cb30-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-8"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip =</span> <span class="dv">0</span>, <span class="at">n_max =</span> <span class="cn">Inf</span>,</span>
+<span id="cb30-9"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">guess_max =</span> <span class="fu">min</span>(<span class="dv">1000</span>, n_max),</span>
+<span id="cb30-10"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">name_repair =</span> <span class="st">"unique"</span>,</span>
+<span id="cb30-11"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">num_threads =</span> <span class="fu">readr_threads</span>(),</span>
+<span id="cb30-12"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">progress =</span> <span class="fu">show_progress</span>(),</span>
+<span id="cb30-13"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="fu">should_show_types</span>(),</span>
+<span id="cb30-14"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">skip_empty_rows =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-15"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">lazy =</span> <span class="fu">should_read_lazy</span>()</span>
+<span id="cb30-16"><a href="" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>This function has numerous <em>arguments</em> (<code>file</code>, <code>col_names</code> etc.)</li>
 <li>Most have default values given
@@ -965,8 +1005,8 @@ Dr Stevie Pederson
 <ul>
 <li>slightly faster</li>
 <li>more user-friendly</li>
-<li>creates fewer issues</li>
 <li>gives informative messages</li>
+<li>always returns a <code>tibble</code></li>
 </ul></li>
 </ul>
 <div class="fragment">
@@ -986,14 +1026,14 @@ Dr Stevie Pederson
 <li>Not part of the core tidyverse but <strong>very</strong> compatible</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <ul>
 <li>The main function is <code>read_excel()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="" aria-hidden="true" tabindex="-1"></a>?read_excel</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -1003,7 +1043,7 @@ Dr Stevie Pederson
 <li>This file contains multiple sheets</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"data/RealTimeData.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">excel_sheets</span>(<span class="st">"data/RealTimeData.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Sheet1" "Sheet2" "Sheet3"</code></pre>
 </div>
