@@ -1,0 +1,323 @@
+---
+title: "Visualising and Plotting Data"
+subtitle: "ASI: Introduction to R"
+author: "Dr Stevie Pederson"
+institute: |
+  | Black Ochre Data Labs
+  | The Kids Research Institute Australia
+date: "2025-09-02"
+date-format: long
+bibliography: bibliography.bib
+title-slide-attributes:
+    data-background-color: "#3d3d40"
+    data-background-image: assets/bodl_logo_white_background.jpg
+    data-background-opacity: "0.3"
+    data-background-size: "90%"
+editor: source
+format: 
+  revealjs:
+    theme: [bodl.scss]
+    code-line-numbers: false
+    code-tools: true
+    logo: assets/bodl_logo_white_background.jpg
+    height: 720
+    width: 1280
+    sansfont: Times New Roman
+    slide-number: c
+    show-slide-number: all
+  html: 
+    css: [bodl.scss, extra.css]
+    output-file: basic_visualisation.html
+    embed-resources: true    
+    toc: true
+    toc-depth: 2
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>      
+knitr: 
+  opts_chunk: 
+    echo: true
+    include: true
+    warning: false
+    message: false
+    fig.align: center
+---
+
+# Visualisation in R
+
+## Start a New R Script
+
+- Call the new script: `BasicVisualisation.R`
+- Load our favourite package at the top of the script
+
+```{r}
+library(tidyverse)
+```
+
+::: {.fragment}
+
+- Load the `penguins` dataset
+
+```{r}
+penguins <- read_csv("data/penguins.csv")
+```
+
+:::
+
+## Introducing The Penguins
+
+::: {style="font-size: 95%"}
+
+```{r}
+penguins
+```
+
+
+- Contains multiple measurements for penguins recorded around Palmer Station, Antarctica
+- Slightly modified version from https://allisonhorst.github.io/palmerpenguins/
+
+:::
+
+## Base Plotting in R
+
+- `R` comes with some very powerful plotting capabilities
+    + Provided in the base package `graphics`
+    + Always loaded with every session
+- Examples are often extremely helpful
+- People used happily for decades
+    + The release of `ggplot2` changed everything
+- Let's quickly explore base plotting before moving to the good stuff
+
+## Base Plotting In R {.slide-only .unlisted}
+
+- Simple plots are usually easy
+    + Complex figures can get really messy
+- Using the `cars` dataset
+    + `speed` (mph)
+    + `dist` (ft) each car takes to stop
+    
+```{r}
+#| fig-show: hide
+plot(cars)
+```
+
+## Base Plotting In R {.slide-only .unlisted}
+
+- The first two columns were automatically placed on the x & y axis
+- We could set values for x & y manually
+    + Switching back to the penguins here
+- Automatically decided to plot using points
+
+```{r}
+#| fig-show: hide
+plot(x = cars$speed, y = cars$dist)
+```
+
+## Base Plotting In R {.slide-only .unlisted}
+
+- Using the `penguins` dataset to compare flipper length and body mass
+
+```{r}
+#| fig-show: hide
+plot(x = penguins$body_mass_g, y = penguins$flipper_length_mm) 
+```
+
+
+
+## Base Plotting In R {.slide-only .unlisted}
+
+- The function `boxplot()` can also create simple figures easily
+- For categorical variables (i.e. factors) we can use the formula notation
+    + `y ~ x` $\implies$ `y` *depends on* `x`
+
+```{r}
+#| fig-show: hide
+## Make a simple boxplot showing the weights by species
+boxplot(body_mass_g ~ species, data = penguins)
+```
+
+::: {.fragment}
+
+- The dependent variable will always appear on the y-axis
+- The predictor will always appear on the x-axis
+
+:::
+
+## Base Plotting In R {.slide-only .unlisted}
+
+- We can also use combinations of predictor variables
+
+```{r}
+#| fig-show: hide
+## Separate by species and sex
+boxplot(body_mass_g ~ sex + species, data = penguins)
+```
+
+
+## Base Plotting In R {.slide-only .unlisted}
+
+- Histograms can be produced on an individual column
+    + The number of breaks can be set manually
+- The default is pretty useful here
+    + Generally simple figures without complexity
+
+```{r}
+#| fig-show: hide
+hist(penguins$body_mass_g, breaks = 20, xlab = "Body Mass (g)")
+```
+
+# Visualisation With `ggplot2` {background-color="#3d3d40" background-image=https://raw.githubusercontent.com/rstudio/hex-stickers/main/PNG/ggplot2.png background-size="25%" background-opacity="0.4" background-position='80% 20%'}
+
+
+## The Grammar of Graphics
+
+- `ggplot2` has become the industry standard for visualisation [@wickham2016-gg]
+- Core & essential part of the `tidyverse`
+- Developed by Hadley Wickham as his PhD thesis
+- An implementation of *The Grammar of Graphics* [@Wilkinson2005-ku]
+    + Breaks visualisation into *layers*
+    + Each layer added as a new line of code
+    
+    
+## The Grammar of Graphics  {.slide-only .unlisted}
+
+![Taken from https://r.qcbs.ca/workshop03/book-en/grammar-of-graphics-gg-basics.html](assets/gglayers.png){fig-align="left"}
+
+
+
+## Our First Plot
+
+- The initial call to `ggplot2`:
+    + Defines the data layer & aesthetic mappings
+    + No geometry defined
+
+```{r}
+#| fig-height: 8
+#| output-location: column-fragment
+ggplot(
+  data = penguins, 
+  mapping = aes(
+    x = body_mass_g, y = flipper_length_mm
+  )
+)
+```
+
+## Adding Points
+
+- To add points $\implies$ `geom_point()`
+
+```{r}
+#| fig-height: 8
+#| output-location: column-fragment
+ggplot(
+  data = penguins, 
+  mapping = aes(
+    x = body_mass_g, y = flipper_length_mm
+  )
+) +
+  geom_point()
+```
+
+## Tidying Up The Code
+
+- Notice we *added* a layer by including `+` after `ggplot()`
+    + All layers of `ggplot` objects are added like this
+    + `+` effectively says *but wait, there's more*
+- `data` is the first argument of `ggplot()`
+    + `mapping` is the second
+
+```{r}
+#| fig-show: hide
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point()
+```
+
+    
+## Adding Layers
+
+- Now we can easily add additional layers
+    + e.g. a smooth curve
+
+```{r}
+#| fig-show: hide
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point() +
+  geom_smooth()
+```
+
+## Adding Layers {.slide-only .unlisted}
+
+- Change to a regression line without an error region:
+    + `method = "lm", se = FALSE`
+
+```{r}
+#| fig-show: hide
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+## Additional Aesthetics
+
+- We might like to colour points by species
+- Adding this to the main `aes()` will send this mapping to all geom layers
+    + Will produce a regression line for each species
+
+```{r}
+#| fig-show: hide
+ggplot(
+  penguins, 
+  aes(x = body_mass_g, y = flipper_length_mm, colour = species)
+) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+
+## The Pipe Operator
+
+- R v4.2.0 introduced a *pipe* operator: `|>`
+- Sends the **output** of one function to the **input** of another
+- Very common and heavily used in the `tidyverse` (esp. `ggplot2`)
+    + Will examine in more detail in an upcoming session
+
+:::: {.columns}
+
+::: {.column}
+::: {.fragment}
+
+```{r}
+head(cars)
+```
+
+:::
+:::
+
+::: {.column}
+::: {.fragment}
+
+```{r}
+cars |> head()
+```
+
+:::
+:::
+::::    
+
+## References
