@@ -371,6 +371,11 @@ Best practice for analysis is to enter all code in the Script Window
 
 ## RStudio: The Script Window {.slide-only .unlisted}
 
+::: {.notes}
+- I sometimes use a double `##` for comments at the start of a line
+- Makes it harder to accidentaly uncomment
+:::
+
 - We can write comments by starting a line with the `#`
     - Anything following this symbol will not be executed
     - Can write notes to ourselves and collaborators

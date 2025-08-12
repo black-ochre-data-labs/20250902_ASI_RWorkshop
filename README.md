@@ -19,7 +19,7 @@ have a working installation before 9am Tuesday, September 2nd.
 
 All data for the session is available [here](data.zip).
 
-## Tuesday November 21st
+## Tuesday 2<sup>nd</sup> September
 
 |  | Topic | Notes | Estimated Duration |
 |:---|:---|:---|---:|
@@ -29,10 +29,10 @@ All data for the session is available [here](data.zip).
 |  | Loading Data Into R<br>Data Frames | [Data Import](data_import.html) | 60min |
 | 10:30 - 11:00 | Morning Tea Break |  | 30min |
 | 11:00 - 13:00 | Loading Data Into R (cont.) |  | 15min |
-|  | Simple Visualisation | [Introduction to `ggplot2`](basic_ggplot2.html) | 60min |
+|  | Introduction To Visualisation | [Introduction to `ggplot2`](intro_visualisation.html) | 80min |
 |  | Working With Text | [Working With Text](text.html) |  |
 
-## Wednesday November 22nd
+## Wednesday 3<sup>rd</sup> September
 
 |  | Topic | Notes | Estimated Duration |
 |:---|:---|:---|---:|
