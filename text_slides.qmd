@@ -1,0 +1,310 @@
+---
+title: "Working With Text"
+subtitle: "ASI: Introduction to R"
+author: "Dr Stevie Pederson"
+institute: |
+  | Black Ochre Data Labs
+  | The Kids Research Institute Australia
+date: "2025-09-02"
+date-format: long
+bibliography: bibliography.bib
+title-slide-attributes:
+    data-background-color: "#3c3c44"
+    data-background-image: assets/bodl_logo_white_background.jpg
+    data-background-opacity: "0.3"
+    data-background-size: "90%"
+editor: source
+format: 
+  revealjs:
+    theme: [bodl.scss]
+    code-line-numbers: false
+    width: 1280
+    height: 720
+    sansfont: Times New Roman
+    logo: assets/bodl_logo_white_background.jpg
+    slide-number: c
+    show-slide-number: all
+  html: 
+    css: [bodl.scss, extra.css]
+    output-file: text.html
+    embed-resources: true    
+    toc: true
+    toc-depth: 2
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>    
+knitr: 
+  opts_chunk: 
+    echo: true
+    results: markup
+    include: true
+    warning: false
+    message: false
+    fig.align: center  
+    fig.height: 6
+    fig.width: 8  
+---
+
+# Text Strings {background-color="#3c3c44" background-image=https://stringr.tidyverse.org/logo.png background-size="40%" background-opacity="0.5" background-position="75% 30%"}
+
+## Text Manipulation
+
+Wrangling text is a common task using `R`
+
+::: {.fragment}
+- Renaming columns for better axis/legend labels in `ggplot`
+    + Change to title case
+    + Remove underscores & replace with spaces
+    
+:::
+
+::: {.fragment}
+- Correcting data entry errors
+    + "Y", "yes", "No"
+    
+:::
+
+::: {.fragment}
+- Extracting key information from filenames
+    + "sample01_treat.bam", "sample01_control.bam"
+    
+:::
+
+## Session Outline
+
+- Basic string manipulation using `stringr`
+    + Is loaded with the `tidyverse`
+- Brief introduction to *regular expressions*
+- Categorical variables using `forcats`
+    + Also loaded with the `tidyverse`
+
+
+## Text Manipulation
+
+::: {style="font-size:99%"}
+
+- Start a new R script: `text.R`
+
+```{r}
+library(tidyverse)
+```
+
+- Next, create the vector we'll mess around with
+
+```{r}
+## Create a character vector for this session
+treats <- c("apple pie", "banana split", "cherry tart", "apple crumble", "banana bread")
+```
+ 
+:::
+
+## Key Utility Functions
+
+- Changing case is common and straightforward
+
+```{r}
+## Convert every character to upper-case
+str_to_upper(treats)
+## Convert the first letter of every word to upper-case
+str_to_title(treats)
+## Convert the first letter of the first word to upper-case
+str_to_sentence(treats)
+```
+
+::: {.fragment}
+- `str_to_lower()` won't have any effect here
+:::
+
+## Key Utility Functions {.slide-only .unlisted}
+
+- Sometimes really long strings can be truncated
+    + The length will be fixed at the given width
+    + Any exceeding this will have `...` in the last 3 positions
+
+```{r}
+str_trunc(treats, 10)
+```
+
+::: {.fragment}
+- Line breaks in `R` are encoded with `"\n"`
+- Can wrap axis labels at a maximum length
+
+```{r}
+str_wrap(treats, 10)
+```
+
+
+:::
+
+## Key Utility Functions {.slide-only .unlisted}
+
+
+- We can simply count the number of characters
+
+```{r}
+str_length(treats)
+```
+
+
+::: {.fragment}
+
+
+- Padding strings can be super-helpful when dealing with numbers
+
+```{r}
+1:10
+str_pad(1:10, width = 2, pad = "0")
+```
+
+:::
+
+## Pattern Detection
+
+
+```{r}
+## Find which values match a given pattern
+str_detect(treats, "nana")
+```
+
+::: {.fragment}
+<br>
+```{r}
+## Find which values start with a pattern
+str_starts(treats, "c")
+```
+
+:::
+::: {.fragment}
+<br>
+```{r}
+## Or those which end with a pattern
+str_ends(treats, "t")
+```
+:::
+
+## Pattern Detection {.slide-only .unlisted}
+
+- All of these contain a `negate` argument
+- Flips the results to those NOT matching the pattern
+
+
+```{r}
+## Find which values DON'T match a given pattern
+str_detect(treats, "nana", negate = TRUE)
+```
+
+::: {.fragment}
+<br>
+```{r}
+## Find which values DON'T start with a pattern
+str_starts(treats, "c", negate = TRUE)
+```
+
+:::
+::: {.fragment}
+<br>
+```{r}
+## Or those which DON'T end with a pattern
+str_ends(treats, "t", negate = TRUE)
+```
+
+:::
+
+## Extracting Patterns
+
+- We can *extract* patterns from each value
+
+```{r}
+str_extract(treats, "apple")
+```
+
+::: {.fragment}
+
+- Or we can simply remove them
+    + I've also removed the space after apple here
+
+```{r}
+str_remove(treats, "apple ")
+```
+
+:::
+
+## Replacing Patterns
+
+```{r}
+## Replace the space with an underscore
+str_replace(treats, pattern = " ", replacement = "-")
+```
+
+::: {.fragment}
+<br>
+
+```{r}
+## Replace an `a` with `u`
+str_replace(treats, pattern = "a", replacement = "u")
+```
+
+- Note this only replaced the first occurence
+
+:::
+::: {.fragment}
+
+```{r}
+## Replace all `a`s with `u`s
+str_replace_all(treats, pattern = "a", replacement = "u")
+```
+
+:::
+
+## Using `_all` versions
+
+```{r}
+str_remove(treats, "a")
+str_remove_all(treats, "a")
+```
+
+
+## Using `_all` versions {.slide-only .unlisted}
+
+- `str_extract_all()` produces an `R` object known as a `list`
+    + A bit trickier to work with
+    
+```{r}
+str_extract(treats, "na")
+str_extract_all(treats, "na")
+```
+    
+# Regular Expressions {background-color="#3c3c44"}
+
+## Regular Expressions
+
+- Regular Expressions allow more powerful pattern matching. We can:
+    + match sets of letters
+    + include wildcards
+    + capture multiple patterns and return in any order
+
+::: {.fragment}
+- `regex` exist in most languages (e.g. `python`, `bash` etc)
+- `R` does have some unique syntax
+- Too complex for our time-frame $\implies$ just a brief introduction
+:::
+
+
+
+
+
