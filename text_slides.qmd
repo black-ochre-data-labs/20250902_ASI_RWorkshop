@@ -181,46 +181,16 @@ str_pad(1:10, width = 2, pad = "0")
 str_detect(treats, "nana")
 ```
 
+
 ::: {.fragment}
-<br>
-```{r}
-## Find which values start with a pattern
-str_starts(treats, "c")
-```
 
-:::
-::: {.fragment}
-<br>
-```{r}
-## Or those which end with a pattern
-str_ends(treats, "t")
-```
-:::
-
-## Pattern Detection {.slide-only .unlisted}
-
-- All of these contain a `negate` argument
+- `str_detect()` contains a `negate` argument
 - Flips the results to those NOT matching the pattern
 
 
 ```{r}
 ## Find which values DON'T match a given pattern
 str_detect(treats, "nana", negate = TRUE)
-```
-
-::: {.fragment}
-<br>
-```{r}
-## Find which values DON'T start with a pattern
-str_starts(treats, "c", negate = TRUE)
-```
-
-:::
-::: {.fragment}
-<br>
-```{r}
-## Or those which DON'T end with a pattern
-str_ends(treats, "t", negate = TRUE)
 ```
 
 :::
@@ -294,7 +264,7 @@ str_extract_all(treats, "na")
 ## Regular Expressions
 
 - Regular Expressions allow more powerful pattern matching. We can:
-    + match sets of letters
+    + match sets of characters
     + include wildcards
     + capture multiple patterns and return in any order
 
@@ -305,6 +275,154 @@ str_extract_all(treats, "na")
 :::
 
 
+## Sets Of Characters
+
+- Sets can be specified using `[]`
+    + `[aeiou]` would match any vowel
+    + `[abc]` would match either `a`, `b` or `c`
+
+::: {.fragment}
+- Sets can include ranges
+    + `[A-Z]` for any uppercase letter
+    + `[a-z]` for any lowercase letter
+    + `[0-9]` for any number
+
+:::
 
 
+## Sets Of Characters {.slide-only .unlisted}
 
+- Predefined sets also exist
+    + `[:alpha:]` matches any alphabetic character
+    + `[:alnum:]` matches any alpha-numeric character
+- All defined at `?regex`
+
+## Sets Of Characters {.slide-only .unlisted}
+
+
+```{r}
+## Remove all vowels using [aeiou]
+str_remove_all(treats, pattern = "[aeiou]")
+```
+
+::: {.fragment}
+<br>
+
+```{r}
+## Replace all vowels with a dash
+str_replace_all(treats, pattern = "[aeiou]", replacement = "-")
+```
+
+:::
+
+## Wildcards
+
+- Unlike many common-use situations, the `regex` wildcards is `.`
+    + `*` has a different meaning
+    
+    
+```{r}
+## Extract the letter a followed by anything
+str_extract(treats, "a.")
+```
+
+## Extending Matches
+
+- Matches can be extended by adding `+`
+    + Matches the previous *one or more times*
+    + `*` matches *zero or more times*
+- If using `.+` $\implies$ one or more wildcards 
+
+
+```{r}
+## Extract a followed by a wildcard, one or more times
+str_extract(treats, "a.+")
+## Extract the first word from each treat
+str_extract(treats, "[a-z]+")
+```
+
+## Capturing Patterns
+
+- Placing a pattern inside `()` "captures" the pattern
+    + Can be returned in the replacement
+- Captured patterns are given numbers $\implies$ the first capture is `1`
+    + In `R` we return captures using `\\1`, `\\2` etc
+    
+```{r}
+## Capture each word, then return in the opposite order
+str_replace_all(treats, "([a-z]+) ([a-z]+)", "\\2 \\1")
+## Just return one of the words amongst other text
+str_replace_all(treats, "([a-z]+) ([a-z]+)", "I'd like \\2 for dessert")
+```
+
+## Anchoring Patterns
+
+- A pattern can be anchored to the start of a string using `^`
+
+```{r}
+## Match any pattern with an `a`
+str_detect(treats, "a")
+## Ensure the `a` is the first character
+str_detect(treats, "^a")
+```
+
+::: {.fragment}
+
+- A pattern can also be anchored to the end of a string using `$`
+
+```{r}
+## Match any pattern with an `e`
+str_detect(treats, "e")
+## Ensure the `e` is the last character
+str_detect(treats, "e$")
+```
+
+
+:::
+
+## Excluding Characters
+
+- To make things confusing, placing `^` inside `[]` negates the character inside `[]`
+
+```{r}
+## Remove all vowels
+str_remove_all(treats, "[aeiou]")
+## Remove everything that isn't a vowel
+str_remove_all(treats, "[^aeiou]")
+```
+
+## Escaping Characters
+
+- The use of special characters (e.g. `^`, `$`, `.`, `+`, `*`, `[`, `]`, `(`, `)`) is very powerful
+
+::: {.fragment}
+- What if we need to exactly match one of them?
+    + Most commonly we need to match a `.` within a file name
+    
+:::
+
+::: {.fragment}
+- We escape *the default meaning of a value* using `\\`
+    + This is how `\\1` returns captures
+    + To match `.` exactly, we use `\\.`
+
+:::
+
+
+## Challenges
+
+1. Replace the `0` at the beginning of these phone numbers with `+61`
+
+```{r}
+phones <- c("0499123456", "0498760432")
+```
+
+2. Remove the transcript version numbers from the following 
+
+```{r}
+ids <- c("ENST00000376207.10", "ENST00000376199.7")
+```
+
+::: {.callout-note collapse="true"}
+Most challenges can be solved more than one way. The right way is the one that works!
+:::

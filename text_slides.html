@@ -374,56 +374,15 @@ Dr Stevie Pederson
 </div>
 </div>
 <div class="fragment">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Find which values start with a pattern</span></span>
-<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_starts</span>(treats, <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Or those which end with a pattern</span></span>
-<span id="cb23-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_ends</span>(treats, <span class="st">"t"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE  TRUE  TRUE FALSE FALSE</code></pre>
-</div>
-</div>
-</div>
-</section>
-<section id="pattern-detection-1" class="slide level2 slide-only unlisted">
-<h2>Pattern Detection</h2>
 <ul>
-<li>All of these contain a <code>negate</code> argument</li>
+<li><code>str_detect()</code> contains a <code>negate</code> argument</li>
 <li>Flips the results to those NOT matching the pattern</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Find which values DON'T match a given pattern</span></span>
-<span id="cb25-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(treats, <span class="st">"nana"</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Find which values DON'T match a given pattern</span></span>
+<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(treats, <span class="st">"nana"</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Find which values DON'T start with a pattern</span></span>
-<span id="cb27-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_starts</span>(treats, <span class="st">"c"</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE  TRUE FALSE  TRUE  TRUE</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Or those which DON'T end with a pattern</span></span>
-<span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_ends</span>(treats, <span class="st">"t"</span>, <span class="at">negate =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE FALSE  TRUE  TRUE</code></pre>
 </div>
 </div>
 </div>
@@ -434,7 +393,7 @@ Dr Stevie Pederson
 <li>We can <em>extract</em> patterns from each value</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(treats, <span class="st">"apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(treats, <span class="st">"apple"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "apple" NA      NA      "apple" NA     </code></pre>
 </div>
@@ -447,7 +406,7 @@ Dr Stevie Pederson
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(treats, <span class="st">"apple "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(treats, <span class="st">"apple "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "pie"          "banana split" "cherry tart"  "crumble"      "banana bread"</code></pre>
 </div>
@@ -457,8 +416,8 @@ Dr Stevie Pederson
 <section id="replacing-patterns" class="slide level2">
 <h2>Replacing Patterns</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Replace the space with an underscore</span></span>
-<span id="cb35-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(treats, <span class="at">pattern =</span> <span class="st">" "</span>, <span class="at">replacement =</span> <span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Replace the space with an underscore</span></span>
+<span id="cb27-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(treats, <span class="at">pattern =</span> <span class="st">" "</span>, <span class="at">replacement =</span> <span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "apple-pie"     "banana-split"  "cherry-tart"   "apple-crumble"
 [5] "banana-bread" </code></pre>
@@ -467,8 +426,8 @@ Dr Stevie Pederson
 <div class="fragment">
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Replace an `a` with `u`</span></span>
-<span id="cb37-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(treats, <span class="at">pattern =</span> <span class="st">"a"</span>, <span class="at">replacement =</span> <span class="st">"u"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Replace an `a` with `u`</span></span>
+<span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(treats, <span class="at">pattern =</span> <span class="st">"a"</span>, <span class="at">replacement =</span> <span class="st">"u"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "upple pie"     "bunana split"  "cherry turt"   "upple crumble"
 [5] "bunana bread" </code></pre>
@@ -480,8 +439,8 @@ Dr Stevie Pederson
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Replace all `a`s with `u`s</span></span>
-<span id="cb39-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(treats, <span class="at">pattern =</span> <span class="st">"a"</span>, <span class="at">replacement =</span> <span class="st">"u"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Replace all `a`s with `u`s</span></span>
+<span id="cb31-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(treats, <span class="at">pattern =</span> <span class="st">"a"</span>, <span class="at">replacement =</span> <span class="st">"u"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "upple pie"     "bununu split"  "cherry turt"   "upple crumble"
 [5] "bununu breud" </code></pre>
@@ -492,11 +451,11 @@ Dr Stevie Pederson
 <section id="using-_all-versions" class="slide level2">
 <h2>Using <code>_all</code> versions</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(treats, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(treats, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "pple pie"     "bnana split"  "cherry trt"   "pple crumble" "bnana bread" </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(treats, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(treats, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "pple pie"     "bnn split"    "cherry trt"   "pple crumble" "bnn bred"    </code></pre>
 </div>
@@ -511,11 +470,11 @@ Dr Stevie Pederson
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(treats, <span class="st">"na"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(treats, <span class="st">"na"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA   "na" NA   NA   "na"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(treats, <span class="st">"na"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract_all</span>(treats, <span class="st">"na"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 character(0)
@@ -544,17 +503,241 @@ character(0)
 <ul>
 <li>Regular Expressions allow more powerful pattern matching. We can:
 <ul>
-<li>match sets of letters</li>
+<li>match sets of characters</li>
 <li>include wildcards</li>
 <li>capture multiple patterns and return in any order</li>
 </ul></li>
 </ul>
 <div class="fragment">
 <ul>
-<li>Exist in most languages (e.g.&nbsp;<code>python</code>, <code>bash</code> etc)</li>
+<li><code>regex</code> exist in most languages (e.g.&nbsp;<code>python</code>, <code>bash</code> etc)</li>
 <li><code>R</code> does have some unique syntax</li>
 <li>Too complex for our time-frame <span class="math inline">\(\implies\)</span> just a brief introduction</li>
 </ul>
+</div>
+</section>
+<section id="sets-of-characters" class="slide level2">
+<h2>Sets Of Characters</h2>
+<ul>
+<li>Sets can be specified using <code>[]</code>
+<ul>
+<li><code>[aeiou]</code> would match any vowel</li>
+<li><code>[abc]</code> would match either <code>a</code>, <code>b</code> or <code>c</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Sets can include ranges
+<ul>
+<li><code>[A-Z]</code> for any uppercase letter</li>
+<li><code>[a-z]</code> for any lowercase letter</li>
+<li><code>[0-9]</code> for any number</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="sets-of-characters-1" class="slide level2 slide-only unlisted">
+<h2>Sets Of Characters</h2>
+<ul>
+<li>Predefined sets also exist
+<ul>
+<li><code>[:alpha:]</code> matches any alphabetic character</li>
+<li><code>[:alnum:]</code> matches any alpha-numeric character</li>
+</ul></li>
+<li>All defined at <code>?regex</code></li>
+</ul>
+</section>
+<section id="sets-of-characters-2" class="slide level2 slide-only unlisted">
+<h2>Sets Of Characters</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove all vowels using [aeiou]</span></span>
+<span id="cb41-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(treats, <span class="at">pattern =</span> <span class="st">"[aeiou]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ppl p"     "bnn splt"  "chrry trt" "ppl crmbl" "bnn brd"  </code></pre>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Replace all vowels with a dash</span></span>
+<span id="cb43-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(treats, <span class="at">pattern =</span> <span class="st">"[aeiou]"</span>, <span class="at">replacement =</span> <span class="st">"-"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "-ppl- p--"     "b-n-n- spl-t"  "ch-rry t-rt"   "-ppl- cr-mbl-"
+[5] "b-n-n- br--d" </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="wildcards" class="slide level2">
+<h2>Wildcards</h2>
+<ul>
+<li>Unlike many common-use situations, the <code>regex</code> wildcards is <code>.</code>
+<ul>
+<li><code>*</code> has a different meaning</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Extract the letter a followed by anything</span></span>
+<span id="cb45-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(treats, <span class="st">"a."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ap" "an" "ar" "ap" "an"</code></pre>
+</div>
+</div>
+</section>
+<section id="extending-matches" class="slide level2">
+<h2>Extending Matches</h2>
+<ul>
+<li>Matches can be extended by adding <code>+</code>
+<ul>
+<li>Matches the previous <em>one or more times</em></li>
+<li><code>*</code> matches <em>zero or more times</em></li>
+</ul></li>
+<li>If using <code>.+</code> <span class="math inline">\(\implies\)</span> one or more wildcards</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Extract a followed by a wildcard, one or more times</span></span>
+<span id="cb47-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(treats, <span class="st">"a.+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "apple pie"     "anana split"   "art"           "apple crumble"
+[5] "anana bread"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Extract the first word from each treat</span></span>
+<span id="cb49-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(treats, <span class="st">"[a-z]+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "apple"  "banana" "cherry" "apple"  "banana"</code></pre>
+</div>
+</div>
+</section>
+<section id="capturing-patterns" class="slide level2">
+<h2>Capturing Patterns</h2>
+<ul>
+<li>Placing a pattern inside <code>()</code> “captures” the pattern
+<ul>
+<li>Can be returned in the replacement</li>
+</ul></li>
+<li>Captured patterns are given numbers <span class="math inline">\(\implies\)</span> the first capture is <code>1</code>
+<ul>
+<li>In <code>R</code> we return captures using <code>\\1</code>, <code>\\2</code> etc</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Capture each word, then return in the opposite order</span></span>
+<span id="cb51-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(treats, <span class="st">"([a-z]+) ([a-z]+)"</span>, <span class="st">"</span><span class="sc">\\</span><span class="st">2 </span><span class="sc">\\</span><span class="st">1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "pie apple"     "split banana"  "tart cherry"   "crumble apple"
+[5] "bread banana" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Just return one of the words amongst other text</span></span>
+<span id="cb53-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(treats, <span class="st">"([a-z]+) ([a-z]+)"</span>, <span class="st">"I'd like </span><span class="sc">\\</span><span class="st">2 for dessert"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "I'd like pie for dessert"     "I'd like split for dessert"  
+[3] "I'd like tart for dessert"    "I'd like crumble for dessert"
+[5] "I'd like bread for dessert"  </code></pre>
+</div>
+</div>
+</section>
+<section id="anchoring-patterns" class="slide level2">
+<h2>Anchoring Patterns</h2>
+<ul>
+<li>A pattern can be anchored to the start of a string using <code>^</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Match any pattern with an `a`</span></span>
+<span id="cb55-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(treats, <span class="st">"a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE TRUE TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Ensure the `a` is the first character</span></span>
+<span id="cb57-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(treats, <span class="st">"^a"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE  TRUE FALSE</code></pre>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>A pattern can also be anchored to the end of a string using <code>$</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Match any pattern with an `e`</span></span>
+<span id="cb59-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(treats, <span class="st">"e"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Ensure the `e` is the last character</span></span>
+<span id="cb61-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(treats, <span class="st">"e$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE  TRUE FALSE</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="excluding-characters" class="slide level2">
+<h2>Excluding Characters</h2>
+<ul>
+<li>To make things confusing, placing <code>^</code> inside <code>[]</code> negates the character inside <code>[]</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove all vowels</span></span>
+<span id="cb63-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(treats, <span class="st">"[aeiou]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "ppl p"     "bnn splt"  "chrry trt" "ppl crmbl" "bnn brd"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Remove everything that isn't a vowel</span></span>
+<span id="cb65-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove_all</span>(treats, <span class="st">"[^aeiou]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "aeie"  "aaai"  "ea"    "aeue"  "aaaea"</code></pre>
+</div>
+</div>
+</section>
+<section id="escaping-characters" class="slide level2">
+<h2>Escaping Characters</h2>
+<ul>
+<li>The use of special characters (e.g.&nbsp;<code>^</code>, <code>$</code>, <code>.</code>, <code>+</code>, <code>*</code>, <code>[</code>, <code>]</code>, <code>(</code>, <code>)</code>) is very powerful</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>What if we need to exactly match one of them?
+<ul>
+<li>Most commonly we need to match a <code>.</code> within a file name</li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>We escape <em>the default meaning of a value</em> using <code>\\</code>
+<ul>
+<li>This is how <code>\\1</code> returns captures</li>
+<li>To match <code>.</code> exactly, we use <code>\\.</code></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="challenges" class="slide level2">
+<h2>Challenges</h2>
+<ol type="1">
+<li>Replace the <code>0</code> at the beginning of these phone numbers with <code>+61</code></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="" aria-hidden="true" tabindex="-1"></a>phones <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"0499123456"</span>, <span class="st">"0498760432"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Remove the transcript version numbers from the following</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ENST00000376207.10"</span>, <span class="st">"ENST00000376199.7"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Most challenges can be solved more than one way. The right way is the one that works!</p>
+</div>
+</div>
 </div>
 
 </section></section>

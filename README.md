@@ -30,7 +30,7 @@ All data for the session is available [here](data.zip).
 | 10:30 - 11:00 | Morning Tea Break |  |  |
 | 11:00 - 13:00 | Loading Data Into R (cont.) |  | 30min |
 |  | Introduction To Visualisation | [Introduction to `ggplot2`](intro_visualisation.html) | 80min |
-|  | Working With Text | [Working With Text](text.html) | 40min |
+|  | Working With Text | [Working With Text](text.html) | 70min |
 
 ## Wednesday 3<sup>rd</sup> September
 
