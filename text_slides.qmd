@@ -403,7 +403,7 @@ str_remove_all(treats, "[^aeiou]")
 
 ::: {.fragment}
 - We escape *the default meaning of a value* using `\\`
-    + This is how `\\1` returns captures
+    + This is how `\\1` returns captures instead of the value `1`
     + To match `.` exactly, we use `\\.`
 
 :::
@@ -426,3 +426,102 @@ ids <- c("ENST00000376207.10", "ENST00000376199.7")
 ::: {.callout-note collapse="true"}
 Most challenges can be solved more than one way. The right way is the one that works!
 :::
+
+# Categorical Variables {background-color="#3c3c44" background-image=https://forcats.tidyverse.org/logo.png background-size="40%" background-opacity="0.5" background-position="75% 30%"}
+
+## Factors
+
+- Categorical Variables are called *factors* in `R`
+- Well handled by the package `forcats`
+    + Is loaded with `library(tidyverse)`
+
+::: {.fragment}
+- Can look like text strings but are subtly different
+    + Multiple repeated values $\implies$ categories
+    + e.g. The islands in the penguins dataset
+    
+:::
+
+## Factors {.slide-only .unlisted}
+
+- Character vectors will always display values surrounded by quotation marks
+- Factors display values *without* quotation marks [except in a `tibble`]{.fragment fragment-index=1}
+
+:::: {.columns}
+
+::: {.column}
+
+```{r}
+dose <- c("High", "Med", "Low")
+dose
+as.factor(dose)
+```
+
+:::
+
+::: {.column}
+
+::: {.fragment fragment-index=1}
+
+```{r}
+tibble(
+  dose = dose, 
+  factor = as.factor(dose)
+)
+```
+
+:::
+:::
+
+::::
+
+## Factors {.slide-only .unlisted}
+
+- `as.factor()` will set categories (i.e. levels) in alpha-numeric order
+    + Will be coerced automatically when plotting
+
+```{r}
+## Notice the category levels are in order
+## High Low Med
+as.factor(dose)
+```
+
+::: {.fragment}
+
+- We can set manually using `factor()`
+
+```{r}
+factor(dose, levels = c("Low", "Med", "High"))
+```
+
+:::
+
+## Using `forcats`
+
+- `as.factor()` and `factor()` are in the package `base`
+- `forcats` provides `as_factor()` and `fct()`
+    + Very similar, but can differ in automatic ordering
+    
+::: {.fragment}
+- Can easily set levels by frequency: `fct_infreq()`
+    + Or in revers: `fct_rev()`
+    
+:::
+
+::: {.fragment}
+- Low frequency categories can be merged: 
+    + `fct_lump()`, `fct_lump_n()`,  `fct_lump_prop()`
+    
+:::
+
+## Using `forcats` {.slide-only .unlisted}
+
+- `NA` values can be set to a specific level
+    + `fct_na_value_to_level()`
+    
+::: {.fragment}
+- `stringr` functions can be used to tidy levels:
+    + `fct_relabel(f, .fun)`
+
+:::
+    

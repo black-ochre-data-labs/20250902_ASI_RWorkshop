@@ -706,7 +706,7 @@ character(0)
 <ul>
 <li>We escape <em>the default meaning of a value</em> using <code>\\</code>
 <ul>
-<li>This is how <code>\\1</code> returns captures</li>
+<li>This is how <code>\\1</code> returns captures instead of the value <code>1</code></li>
 <li>To match <code>.</code> exactly, we use <code>\\.</code></li>
 </ul></li>
 </ul>
@@ -738,6 +738,142 @@ character(0)
 <p>Most challenges can be solved more than one way. The right way is the one that works!</p>
 </div>
 </div>
+</div>
+</section></section>
+<section>
+<section id="categorical-variables" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://forcats.tidyverse.org/logo.png" data-background-size="40%" data-background-opacity="0.5" data-background-position="75% 30%">
+<h1>Categorical Variables</h1>
+
+</section>
+<section id="factors" class="slide level2">
+<h2>Factors</h2>
+<ul>
+<li>Categorical Variables are called <em>factors</em> in <code>R</code></li>
+<li>Well handled by the package <code>forcats</code>
+<ul>
+<li>Is loaded with <code>library(tidyverse)</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Can look like text strings but are subtly different
+<ul>
+<li>Multiple repeated values <span class="math inline">\(\implies\)</span> categories</li>
+<li>e.g.&nbsp;The islands in the penguins dataset</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="factors-1" class="slide level2 slide-only unlisted">
+<h2>Factors</h2>
+<ul>
+<li>Character vectors will always display values surrounded by quotation marks</li>
+<li>Factors display values <em>without</em> quotation marks <span class="fragment" data-fragment-index="1">except in a <code>tibble</code></span></li>
+</ul>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="" aria-hidden="true" tabindex="-1"></a>dose <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"High"</span>, <span class="st">"Med"</span>, <span class="st">"Low"</span>)</span>
+<span id="cb69-2"><a href="" aria-hidden="true" tabindex="-1"></a>dose</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "High" "Med"  "Low" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] High Med  Low 
+Levels: High Low Med</code></pre>
+</div>
+</div>
+</div><div class="column">
+<div class="fragment" data-fragment-index="1">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb73-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">dose =</span> dose, </span>
+<span id="cb73-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="at">factor =</span> <span class="fu">as.factor</span>(dose)</span>
+<span id="cb73-4"><a href="" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  dose  factor
+  &lt;chr&gt; &lt;fct&gt; 
+1 High  High  
+2 Med   Med   
+3 Low   Low   </code></pre>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="factors-2" class="slide level2 slide-only unlisted">
+<h2>Factors</h2>
+<ul>
+<li><code>as.factor()</code> will set categories (i.e.&nbsp;levels) in alpha-numeric order
+<ul>
+<li>Will be coerced automatically when plotting</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Notice the category levels are in order</span></span>
+<span id="cb75-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## High Low Med</span></span>
+<span id="cb75-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">as.factor</span>(dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] High Med  Low 
+Levels: High Low Med</code></pre>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>We can set manually using <code>factor()</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(dose, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Med"</span>, <span class="st">"High"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] High Med  Low 
+Levels: Low Med High</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="using-forcats" class="slide level2">
+<h2>Using <code>forcats</code></h2>
+<ul>
+<li><code>as.factor()</code> and <code>factor()</code> are in the package <code>base</code></li>
+<li><code>forcats</code> provides <code>as_factor()</code> and <code>fct()</code>
+<ul>
+<li>Very similar, but can differ in automatic ordering</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Can easily set levels by frequency: <code>fct_infreq()</code>
+<ul>
+<li>Or in revers: <code>fct_rev()</code></li>
+</ul></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Low frequency categories can be merged:
+<ul>
+<li><code>fct_lump()</code>, <code>fct_lump_n()</code>, <code>fct_lump_prop()</code></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="using-forcats-1" class="slide level2 slide-only unlisted">
+<h2>Using <code>forcats</code></h2>
+<ul>
+<li><code>NA</code> values can be set to a specific level
+<ul>
+<li><code>fct_na_value_to_level()</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><code>stringr</code> functions can be used to tidy levels:
+<ul>
+<li><code>fct_relabel(f, .fun)</code></li>
+</ul></li>
+</ul>
 </div>
 
 </section></section>
