@@ -195,6 +195,25 @@ str_detect(treats, "nana", negate = TRUE)
 
 :::
 
+## Subsetting By Pattern
+
+- We can also subset elements which match our pattern
+
+```{r}
+str_subset(treats, "apple")
+```
+
+::: {.fragment}
+
+- `negate` is also an argument for `str_subset()`
+
+```{r}
+str_subset(treats, "apple", negate = TRUE)
+```
+
+:::
+
+
 ## Extracting Patterns
 
 - We can *extract* patterns from each value
@@ -206,7 +225,7 @@ str_extract(treats, "apple")
 ::: {.fragment}
 
 - Or we can simply remove them
-    + I've also removed the space after apple here
+    + NB: We've also removed the space after apple here
 
 ```{r}
 str_remove(treats, "apple ")
@@ -423,7 +442,7 @@ phones <- c("0499123456", "0498760432")
 ids <- c("ENST00000376207.10", "ENST00000376199.7")
 ```
 
-::: {.callout-note collapse="true"}
+::: {.callout-note collapse="false"}
 Most challenges can be solved more than one way. The right way is the one that works!
 :::
 

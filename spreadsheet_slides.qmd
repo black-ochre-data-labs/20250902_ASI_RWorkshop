@@ -1,0 +1,781 @@
+---
+title: "Spreadsheet-Like Data"
+subtitle: "ASI: Introduction to R"
+author: "Dr Stevie Pederson"
+institute: |
+  | Black Ochre Data Labs
+  | The Kids Research Institute Australia
+date: "2025-09-03"
+date-format: long
+bibliography: bibliography.bib
+title-slide-attributes:
+    data-background-color: "#3d3d40"
+    data-background-image: assets/bodl_logo_white_background.jpg
+    data-background-opacity: "0.3"
+    data-background-size: "90%"
+editor: source
+format: 
+  revealjs:
+    theme: [bodl.scss]
+    code-line-numbers: false
+    code-tools: true
+    logo: assets/bodl_logo_white_background.jpg
+    height: 720
+    width: 1280
+    sansfont: Times New Roman
+    slide-number: c
+    show-slide-number: all
+  html: 
+    css: [bodl.scss, extra.css]
+    output-file: spreadsheet.html
+    embed-resources: true    
+    toc: true
+    toc-depth: 2
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>      
+knitr: 
+  opts_chunk: 
+    echo: true
+    include: true
+    results: markup
+    warning: false
+    message: false
+    fig.align: center
+    fig.width: 6
+    fig.height: 6
+    code-line-numbers: true
+---
+
+
+# Working With<br>Spreadsheet-Like Data {background-color="#3c3c44" background-image=https://www.tidyverse.org/images/hex-tidyverse.png background-size="30%" background-opacity="0.4" background-position="80% 20%"}
+
+## Section Setup
+
+- Clear your `R` Environment
+- Create a new script called 'SpreadsheetLikeData.R'
+- Load the tidyverse
+
+```{r}
+library(tidyverse)
+```
+
+::: {.fragment}
+
+<br>We'll cover:
+
+- `SQL-` and `Excel-`like functions in `dplyr`
+- Pivot Tables and Manipulation using `tidyr`
+- Chaining function together using the pipe operator
+
+:::
+
+## The Pipe Operator
+
+- In real-world analyses we often perform multiple steps
+- The classic `R` approach was to create a new object at each step
+    + Leads to congested environments with multiple similar objects
+    + e.g. `data_raw`, `data_sorted`, `data_subset`
+    
+::: {.fragment}
+- In R v4.1.0 the pipe operator was introduced: `|>`
+- Takes the output of one function and connects it to the input of another
+    + An assembly line $\implies$ like taking the output of one process and sending straight to the input of another process
+
+
+:::
+
+## The Pipe Operator {.slide-only .unlisted}
+
+- If `R` ran an assembly line making toy cars
+
+``` r
+step1 <- mould(hot_plastic)
+step2 <- paint(step1, "red")
+step3 <- attach_wheels(step2)
+final_car <- package(step3)
+```
+
+::: {.fragment}
+
+- Using the `|>` operator this might become
+
+``` r
+final_car <- hot_plastic |>
+  mould() |>
+  paint("red") |>
+  attach_wheels() |>
+  package()
+```
+
+:::
+
+## The Pipe Operator {.slide-only .unlisted}
+
+
+:::: {.columns}
+::: {.column}
+
+```{r}
+head(cars)
+```
+
+:::
+::: {.column}
+
+::: {.fragment}
+
+```{r}
+cars |> head()
+```
+
+:::
+
+:::
+
+::::
+
+::: {.fragment}
+- We'll use this approach for the remainder of the session
+:::
+
+## Returning To The Penguins
+
+- We'll use `my_penguins` for this session
+
+```{r}
+my_penguins <- read_csv("data/my_penguins.csv")
+```
+
+::: {.fragment}
+- This is a `tibble()` (i.e. a conveniently wrapped `data.frame`)
+- We can easily get key attributes about these objects
+
+```{r}
+#| results: hide
+dim(my_penguins)
+nrow(my_penguins)
+ncol(my_penguins)
+colnames(my_penguins)
+```
+
+
+:::
+
+## Using the Pipe Operator
+
+::: {.notes}
+- Once we move beyond 2 piped functions, it's very common to write each one on a separate line
+:::
+
+- We could also perform these operations the pipe (`|>`)
+
+```{r}
+my_penguins |> colnames()
+```
+
+::: {.fragment}
+- This approach combines nicely with `stringr`
+
+```{r}
+my_penguins |>
+  colnames() |>
+  str_subset(pattern = "bill")
+```
+
+
+:::
+
+## Subsetting a Data Frame
+
+- We can subset a `tibble` using `[,]` just like a `data.frame`
+
+```{r}
+my_penguins[1:3, c("species", "island", "body_mass_g")]
+```
+
+## Subsetting a Data Frame {.slide-only .unlisted}
+
+- `dplyr` provides two separate functions for this
+- Designed for integration with the pipe
+- `select()` allows for selecting columns by position or name
+- `slice()` allows for cutting out rows *by position only*
+    + `filter()` (coming soon) allows for returning rows by a key value
+
+::: {.fragment}
+    
+```{r}
+## Grab the first 3 rows from the species, island and body_mass_g columns
+my_penguins |>
+  select(species, island, body_mass_g) |>
+  slice(1:3)
+```
+
+:::
+
+## Subsetting a Data Frame {.slide-only .unlisted}
+
+- An advantage of this approach is the use of helpers
+    + `starts_with()`, `ends_with()`
+    + `contains()`, `matches()`
+    + `all_of()`, `any_of()`
+    + `everything()`
+    + `where()`
+    
+::: {.fragment}
+    
+```{r}
+#| results: hide
+## Just return the columns species and island, along with thos measured in mm
+my_penguins |>
+  select(species, island, ends_with("mm"))
+```
+
+:::
+    
+## Subsetting a Data Frame {.slide-only .unlisted}
+
+```{r}
+#| results: hide
+## Just return the columns species & island along with bill measurements
+my_penguins |>
+  select(species, island, contains("bill"))
+```
+
+::: {.fragment}
+<br>
+```{r}
+#| results: hide
+## Return the columns which are character vectors then place all other columns 
+## after them. `where()` applies the logical test `is.character()` to each column
+my_penguins |>
+  select(where(is.character), everything())
+```
+:::
+
+## Subsetting a Data Frame {.slide-only .unlisted}
+
+- Column names above haven't been quoted
+- `any_of()` and `all_of()` take character vectors
+
+```{r}
+#| results: hide
+## `all_of` requires all columns to exist
+my_penguins |>
+  select(all_of(c("species", "island", "sex")))
+```
+
+::: {.fragment}
+<br>
+```{r}
+#| results: hide
+## `any_of` will ignore any columns that don't exist
+my_penguins |>
+  select(any_of(c("species", "island", "sex", "nonsense")))
+```
+:::
+
+## Excel-Like Functions in `dplyr`
+
+- Two common tasks in Excel are 1) sorting a column and 2) applying a filter
+- In `dplyr` the relevant functons are `arrange()` and `filter()`
+
+
+```{r}
+## Show the penguins in order of weight. This will be ascending by default
+my_penguins |>
+  arrange(body_mass_g)
+```
+    
+
+## Excel-Like Functions in `dplyr` {.slide-only .unlisted}
+
+::: {.notes}
+- Notice we're not saving any new objects here. We're simply exploring our data
+:::
+
+- To sort in descending order, we wrap the column name inside `desc()`
+
+
+```{r}
+## Show the penguins in descending order of weight
+my_penguins |>
+  arrange(desc(body_mass_g))
+```
+    
+## Applying a Filter
+
+- We can subset using `filter()`
+
+```{r}
+## Show only the penguins heavier than 4kg
+my_penguins |>
+  filter(body_mass_g > 4000)
+```
+
+
+## Applying a Filter {.slide-only .unlisted}
+
+- This relies on logical tests being performed on the column of interest
+
+| Symbol   | Meaning           |
+|:-------- |:----------------- |
+| `==`     | *Is equal to*     |
+| `!=`     | *Is NOT equal to* |
+| `>=` / `<=` | *Is greater/less than or equal to* |
+| `>` / `<`   | *Is greater/less than* |
+| `%in%`   | *Is IN a set of values* |
+| `is.na()` | *Is a missing value (i.e.* `NA`*)* |
+
+## Applying a Filter {.slide-only .unlisted}
+
+```{r}
+## Show only the Chinstrap penguins heavier than 4kg
+my_penguins |>
+  filter(species == "Chinstrap", body_mass_g > 4000)
+```
+
+## Applying a Filter {.slide-only .unlisted}
+
+```{r}
+## Show the Adelie or Chinstrap penguins
+my_penguins |>
+  filter(species %in% c("Adelie", "Chinstrap"))
+```
+
+## Applying a Filter {.slide-only .unlisted}
+
+```{r}
+## Alternatively, exclude the Gentoo penguins. This does the same as previously
+my_penguins |>
+  filter(species != "Gentoo")
+```
+
+## Applying a Filter {.slide-only .unlisted}
+
+- `str_detect()` can also play a role here
+
+```{r}
+## Match the patterns Ade or Chin to show only the Adelie or Chinstrap penguins
+my_penguins |>
+  filter(str_detect(species, "Ade|Chin"))
+```
+
+## Combining Functions
+
+```{r}
+## Match the patterns Ade or Chin to show only the Adelie or Chinstrap penguins
+## Show the results in decreasing order of weight
+my_penguins |>
+  filter(str_detect(species, "Ade|Chin")) |>
+  arrange(desc(body_mass_g))
+```
+
+## Summarising Data
+
+- Creating tables of counts is simple $\implies$ just pass the column names to `count()`
+
+```{r}
+my_penguins |>
+  count(species, island)
+```
+
+## Creating Summary Plots {.slide-only .unlisted}
+
+::: {.notes}
+- This is a great example of how powerful the piping approach is
+:::
+
+```{r}
+#| output-location: column
+## Create a summary on the fly, followed 
+## by a very barplot showing how penguins
+## are distributed on the three islands
+my_penguins |>
+  count(species, island) |>
+  ggplot(aes(species, n, fill = island)) +
+  geom_col() +
+  scale_fill_brewer(palette = "Set1") +
+  theme_bw()
+```
+
+## Summarising Data {.slide-only .unlisted}
+
+- Sometimes we need more sophisticated summaries or summary values
+
+```{r}
+#| results: hide
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    sd_weight = sd(body_mass_g)
+  )
+```
+
+
+::: {.fragment}
+- To show these by any category we can use the `.by =` argument
+
+```{r}
+#| results: hide
+## Find the mean & sd of body mass by species
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    sd_weight = sd(body_mass_g),
+    .by = species
+  )
+```
+
+
+:::
+
+## Summarising Data {.slide-only .unlisted}
+
+::: {style="font-size:90%"}
+
+```{r}
+#| output-location: column
+## Create a barplot with error bars
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    sd_weight = sd(body_mass_g),
+    .by = species
+  ) |>
+  ggplot(
+    aes(species, mn_weight, fill = species)
+  ) +
+  geom_col() +
+  geom_errorbar(
+    aes(
+      ymin = mn_weight - sd_weight,
+      ymax = mn_weight + sd_weight
+    ),
+    width = 0.3
+  ) +
+  scale_fill_brewer(palette = "Set1") +
+  theme_bw()
+```
+
+:::
+
+## Modifying Columns
+
+- So far we've only selected, arranged, filtered and summarised existing columns
+- `mutate()` can be used to:
+    1. Modify existing columns, or
+    2. Add a new column
+    
+::: {.fragment}
+- Do we think any of these columns are categorical
+    + We could turn these into factors!!!
+    
+:::
+
+## Modifying Columns {.slide-only .unlisted}
+
+```{r}
+#| code-line-numbers: '1-4|5-7|8-10|1-10'
+#| results: hide
+my_penguins |>
+  mutate(
+    species = fct(species),
+    island = fct(island),
+    ## The default order for `fct()` will be in order of appearance
+    ## Set levels manually to place female first
+    sex = fct(sex, levels = c("female", "male")),
+    ## `fct()` requires a character vector
+    ## We can also pipe internally!!!
+    year = year |> as.character() |> fct()
+  ) 
+```
+
+::: {.fragment}
+::: {.callout-important collapse="true"}
+## Have we changed the original data?
+::: {.fragment}
+No, we've just changed it on the fly as we inspect it
+:::
+:::
+:::
+
+## Modifying Columns {.slide-only .unlisted}
+
+::: {.notes}
+- Leaving the comments here will be like a gift to future you when you can't remember what you were thinking
+:::
+
+- I will usually modify columns like this when I'm loading the data
+- This ensures the entire workflow uses the identical dataset from the beginning
+
+::: {.fragment}
+
+```{r}
+my_penguins <- read_csv("data/my_penguins.csv") |>
+  mutate(
+    species = fct(species),
+    island = fct(island),
+    ## The default order for `fct()` will be in order of appearance
+    ## Set levels manually to place female first
+    sex = fct(sex, levels = c("female", "male")),
+    ## `fct()` requires a character vector
+    ## We can also pipe internally!!!
+    year = year |> as.character() |> fct()
+  )
+```
+
+
+:::
+
+# Reshaping Data with `tidyr` {background-color="#3c3c44" background-image=https://tidyr.tidyverse.org/logo.png background-size="30%" background-opacity="0.4" background-position="80% 20%"}
+
+## Using `tidyr`
+
+- The data structures so far have been great for plotting
+- Generally we've seen data in long form
+    + Each value type has it's own column
+- Summary tables can be a little different $\implies$ `tidyr`
+    + Pivoting Data with `pivot_longer()` and `pivot_wider()`
+    + Merging/Separating Columns with `unite()` and `separate()`
+
+::: {.fragment}
+- Earlier we found the mean & sd of the weight by species and island
+    + Let's include sex then show results in seprate columns
+    
+:::
+
+## Changing From Long To Wide Form
+
+```{r}
+#| results: hide
+## Calculate the mean weight by species, island and sex
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    .by = c(species, island, sex)
+  )
+```
+
+
+::: {.fragment}
+<br>
+```{r}
+#| results: hide
+## Calculate the mean weight by species, island and sex
+## Then place values for male & female in separate columns
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    .by = c(species, island, sex)
+  ) |>
+  pivot_wider(names_from = sex, values_from = mn_weight)
+```
+
+:::
+
+::: {.fragment}
+- This is a great summary table already $\implies$ how do we include SD?
+:::
+
+## Changing From Long To Wide Form  {.slide-only .unlisted}
+
+- Pivot wider can move multiple columns into wide format
+- The `tidyselect` helper `ends_with()` we saw earlier will work here too
+
+```{r}
+#| code-line-numbers: '4-5|8-9'
+#| results: hide
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    ## This is a fitted value so standard error may be more appropriate
+    se_weight = sd(body_mass_g) / sqrt(n()),
+    .by = c(species, island, sex)
+  ) |>
+  ## Use `ends_with("weight")` to pivot the appropriate columns
+  pivot_wider(names_from = sex, values_from = ends_with("weight"))
+```
+
+## Combining Columns
+
+::: {style="font-size:95%"}
+
+- Now we have the mean & standard error
+- How do we combine these for a nice printed table [$\implies$ `unite()`]{.fragment}
+
+::: {.fragment}
+- The first argument is the name of the new column
+- Then use `tidyselect` helpers to select the columns to "unite" 
+:::
+
+::: {.fragment}
+
+```{r}
+#| code-line-numbers: '1-7|8-9|10'
+#| results: hide
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    se_weight = sd(body_mass_g) / sqrt(n()),
+    .by = c(species, island, sex)
+  ) |>
+  pivot_wider(names_from = sex, values_from = ends_with("weight")) |>
+  ## Include the underscore for the male columns, but not for the female columns
+  unite(male, ends_with("_male"), sep = " +/- ") |>
+  unite(female, ends_with("female"), sep = " +/- ") 
+```
+
+:::
+
+::: {.fragment}
+::: {.callout-note}
+## Are we happy with this? [No. We need to round the values]{.fragment}
+:::
+:::
+:::
+
+## Applying Functions To Multiple Columns
+
+- Sometimes we need to apply the same function to multiple columns
+- The function `across()` is perfect for this situation
+    + Can be applied inside `mutate()` or `summarise()`
+
+::: {.fragment}
+- First we specify the columns using the `tidyselect` helpers
+- Then we provide the function to apply
+:::
+
+::: {.fragment}
+- `across(.cols, .fns)`
+:::
+
+## Applying Functions To Multiple Columns {.slide-only .unlisted}
+
+- Here we'll call `across(ends_with("male"), round)` within a `mutate()`
+
+```{r}
+#| code-line-numbers: '10-12'
+#| results: hide
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    ## This is a fitted value so standard error may be more appropriate
+    se_weight = sd(body_mass_g) / sqrt(n()),
+    .by = c(species, island, sex)
+  ) |>
+  ## Use `ends_with("weight")` to pivot the appropriate columns
+  pivot_wider(names_from = sex, values_from = ends_with("weight")) |>
+  ## Apply the function `round()` to all four columns ending with male
+  ## This will default to zero digits, which is fine for this table
+  mutate(across(ends_with("male"), round)) |>
+  unite(male, ends_with("_male"), sep = " +/- ") |>
+  unite(female, ends_with("female"), sep = " +/- ") 
+```
+
+## Applying Functions To Multiple Columns {visibility="hidden" .slide-only .unlisted}
+
+::: {.callout-note}
+A bonus code chunk not included in the slides showing how to round to 1 digit
+:::
+
+```{r}
+#| results: hide
+my_penguins |>
+  summarise(
+    mn_weight = mean(body_mass_g),
+    ## This is a fitted value so standard error may be more appropriate
+    se_weight = sd(body_mass_g) / sqrt(n()),
+    .by = c(species, island, sex)
+  ) |>
+  ## Use `ends_with("weight")` to pivot the appropriate columns
+  pivot_wider(names_from = sex, values_from = ends_with("weight")) |>
+  ## If we want 1 digit, we use slightly different syntax
+  ## This relies on the value from each column being passed to `round()`
+  ## as the value `.x`. The details are beyond the scope of this course
+  mutate(across(ends_with("male"), ~round(.x, digits = 1))) |>
+  unite(male, ends_with("_male"), sep = " +/- ") |>
+  unite(female, ends_with("female"), sep = " +/- ") 
+```
+
+## Shifting From Wide to Long Form
+
+- The same principles apply when using `pivot_longer()`
+    + Won't explore in as much detail
+
+```{r}
+## Place all measurements taken in 'mm' into the same column
+my_penguins |>
+  pivot_longer(ends_with("mm"), names_to = "measurement", values_to = "mm") 
+```
+
+## Separating Values Into Multiple Columns
+
+```{r}
+#| code-line-numbers: '4-5|6-7'
+## Place all measurements taken in 'mm' into the same column
+my_penguins |>
+  pivot_longer(ends_with("mm"), names_to = "measurement", values_to = "mm") |>
+  ## Now separate the values into body part & measurement type
+  separate(measurement, c("body_part", "measurement_type", "junk"), sep = "_") |>
+  ## We can get rid of the junk column by using the `-` symbol before the column name
+  dplyr::select(-junk)
+```
+
+## Separating Values Into Multiple Columns {visibility="hidden" .slide-only .unlisted}
+
+::: {.callout-note}
+A bonus code chunk showing all other measurements compared to Body Mass
+:::
+
+```{r}
+#| fig-width: 10
+my_penguins |>
+  pivot_longer(ends_with("mm"), names_to = "measurement", values_to = "mm") |>
+  mutate(measurement = str_remove_all(measurement, "_mm")) |>
+  ggplot(aes(body_mass_g, mm, colour = species)) +
+  geom_point(aes(shape = sex)) +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~measurement, scales = "free") +
+  scale_colour_brewer(palette = "Set1") +
+  scale_shape_manual(values = c(1, 19)) +
+  theme_bw()
+```
+
+## Closing Comments
+
+::: {style="font-size:95%"}
+
+- Functions in `dplyr` are often based on `SQL` functions
+    + `dplyr` was first released in 2014 [^1]
+- Many other packages already contained a `select()`, `filter()` etc function
+
+::: {.fragment}
+- If a `dplyr` function gives a strange error <br>$\implies$ probably loaded another package with a function of the same name
+- Common cases are `select()`, `filter()`, `slice()`, `count()`, `n()`
+:::
+
+::: {.fragment}
+- The solution is to call explicitly from `dplyr` using the `namespace`
+    + e.g. `dplyr::select()`, `dplyr::filter()`, `dplyr::count()` etc
+    
+:::
+
+:::
+
+[^1]: https://hadley.github.io/25-tidyverse-history/index-preview.html#key-innovations

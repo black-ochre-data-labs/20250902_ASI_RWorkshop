@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="spreadsheet_slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="spreadsheet_slides_files/libs/quarto-html/tabby.min.js"></script>
+<script src="spreadsheet_slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="spreadsheet_slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="spreadsheet_slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="spreadsheet_slides_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="spreadsheet_slides_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
+
+  <meta name="author" content="Dr Stevie Pederson">
+  <meta name="dcterms.date" content="2025-09-03">
+  <title>Spreadsheet-Like Data</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="spreadsheet_slides_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="spreadsheet_slides_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="spreadsheet_slides_files/libs/revealjs/dist/theme/quarto-30963254ca3fee1f61c50d8fd85c7cc4.css">
+  <link href="spreadsheet_slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="spreadsheet_slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="spreadsheet_slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="spreadsheet_slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#3d3d40" data-background-image="assets/bodl_logo_white_background.jpg" data-background-opacity="0.3" data-background-size="90%" class="quarto-title-block center">
+  <h1 class="title">Spreadsheet-Like Data</h1>
+  <p class="subtitle">ASI: Introduction to R</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Dr Stevie Pederson 
+</div>
+        <p class="quarto-title-affiliation">
+            </p><div class="line-block">Black Ochre Data Labs<br>
+            The Kids Research Institute Australia</div>
+          <p></p>
+    </div>
+</div>
+
+  <p class="date">September 3, 2025</p>
+</section>
+<section>
+<section id="working-with-spreadsheet-like-data" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://www.tidyverse.org/images/hex-tidyverse.png" data-background-size="30%" data-background-opacity="0.4" data-background-position="80% 20%">
+<h1>Working With<br>Spreadsheet-Like Data</h1>
+
+</section>
+<section id="section-setup" class="slide level2">
+<h2>Section Setup</h2>
+<ul>
+<li>Clear your <code>R</code> Environment</li>
+<li>Create a new script called ‘SpreadsheetLikeData.R’</li>
+<li>Load the tidyverse</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><br>We’ll cover:</p>
+<ul>
+<li><code>SQL-</code> and <code>Excel-</code>like functions in <code>dplyr</code></li>
+<li>Pivot Tables and Manipulation using <code>tidyr</code></li>
+<li>Chaining function together using the pipe operator</li>
+</ul>
+</div>
+</section>
+<section id="the-pipe-operator" class="slide level2">
+<h2>The Pipe Operator</h2>
+<ul>
+<li>In real-world analyses we often perform multiple steps</li>
+<li>The classic <code>R</code> approach was to create a new object at each step
+<ul>
+<li>Leads to congested environments with multiple similar objects</li>
+<li>e.g.&nbsp;<code>data_raw</code>, <code>data_sorted</code>, <code>data_subset</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>In R v4.1.0 the pipe operator was introduced: <code>|&gt;</code></li>
+<li>Takes the output of one function and connects it to the input of another
+<ul>
+<li>An assembly line <span class="math inline">\(\implies\)</span> like taking the output of one process and sending straight to the input of another process</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="the-pipe-operator-1" class="slide level2 slide-only unlisted">
+<h2>The Pipe Operator</h2>
+<ul>
+<li>If <code>R</code> ran an assembly line making toy cars</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>step1 <span class="ot">&lt;-</span> <span class="fu">mould</span>(hot_plastic)</span>
+<span id="cb2-2"><a href="" aria-hidden="true" tabindex="-1"></a>step2 <span class="ot">&lt;-</span> <span class="fu">paint</span>(step1, <span class="st">"red"</span>)</span>
+<span id="cb2-3"><a href="" aria-hidden="true" tabindex="-1"></a>step3 <span class="ot">&lt;-</span> <span class="fu">attach_wheels</span>(step2)</span>
+<span id="cb2-4"><a href="" aria-hidden="true" tabindex="-1"></a>final_car <span class="ot">&lt;-</span> <span class="fu">package</span>(step3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<ul>
+<li>Using the <code>|&gt;</code> operator this might become</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a>final_car <span class="ot">&lt;-</span> hot_plastic <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mould</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paint</span>(<span class="st">"red"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">attach_wheels</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">package</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="the-pipe-operator-2" class="slide level2 slide-only unlisted">
+<h2>The Pipe Operator</h2>
+<div class="columns">
+<div class="column">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">head</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  speed dist
+1     4    2
+2     4   10
+3     7    4
+4     7   22
+5     8   16
+6     9   10</code></pre>
+</div>
+</div>
+</div><div class="column">
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>cars <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  speed dist
+1     4    2
+2     4   10
+3     7    4
+4     7   22
+5     8   16
+6     9   10</code></pre>
+</div>
+</div>
+</div>
+</div></div>
+<div class="fragment">
+<ul>
+<li>We’ll use this approach for the remainder of the session</li>
+</ul>
+</div>
+</section>
+<section id="returning-to-the-penguins" class="slide level2">
+<h2>Returning To The Penguins</h2>
+<ul>
+<li>We’ll use <code>my_penguins</code> for this session</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>my_penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/my_penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<ul>
+<li>This is a <code>tibble()</code> (i.e.&nbsp;a conveniently wrapped <code>data.frame</code>)</li>
+<li>We can easily get key attributes about these objects</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">dim</span>(my_penguins)</span>
+<span id="cb9-2"><a href=""></a><span class="fu">nrow</span>(my_penguins)</span>
+<span id="cb9-3"><a href=""></a><span class="fu">ncol</span>(my_penguins)</span>
+<span id="cb9-4"><a href=""></a><span class="fu">colnames</span>(my_penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="using-the-pipe-operator" class="slide level2">
+<h2>Using the Pipe Operator</h2>
+<aside class="notes">
+<ul>
+<li>Once we move beyond 2 piped functions, it’s very common to write each one on a separate line</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<ul>
+<li>We could also perform these operations the pipe (<code>|&gt;</code>)</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span> <span class="fu">colnames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "species"           "island"            "bill_length_mm"   
+[4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
+[7] "sex"               "year"             </code></pre>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>This approach combines nicely with <code>stringr</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href=""></a>  <span class="fu">colnames</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href=""></a>  <span class="fu">str_subset</span>(<span class="at">pattern =</span> <span class="st">"bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "bill_length_mm" "bill_depth_mm" </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="subsetting-a-data-frame" class="slide level2">
+<h2>Subsetting a Data Frame</h2>
+<ul>
+<li>We can subset a <code>tibble</code> using <code>[,]</code> just like a <code>data.frame</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>my_penguins[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"body_mass_g"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species island    body_mass_g
+  &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;
+1 Adelie  Torgersen        3750
+2 Adelie  Torgersen        3800
+3 Adelie  Torgersen        3250</code></pre>
+</div>
+</div>
+</section>
+<section id="subsetting-a-data-frame-1" class="slide level2 slide-only unlisted">
+<h2>Subsetting a Data Frame</h2>
+<ul>
+<li><code>dplyr</code> provides two separate functions for this</li>
+<li>Designed for integration with the pipe</li>
+<li><code>select()</code> allows for selecting columns by position or name</li>
+<li><code>slice()</code> allows for cutting out rows <em>by position only</em>
+<ul>
+<li><code>filter()</code> (coming soon) allows for returning rows by a key value</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="do">## Grab the first 3 rows from the species, island and body_mass_g columns</span></span>
+<span id="cb16-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href=""></a>  <span class="fu">select</span>(species, island, body_mass_g) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href=""></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species island    body_mass_g
+  &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;
+1 Adelie  Torgersen        3750
+2 Adelie  Torgersen        3800
+3 Adelie  Torgersen        3250</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="subsetting-a-data-frame-2" class="slide level2 slide-only unlisted">
+<h2>Subsetting a Data Frame</h2>
+<ul>
+<li>An advantage of this approach is the use of helpers
+<ul>
+<li><code>starts_with()</code>, <code>ends_with()</code></li>
+<li><code>contains()</code>, <code>matches()</code></li>
+<li><code>all_of()</code>, <code>any_of()</code></li>
+<li><code>everything()</code></li>
+<li><code>where()</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="do">## Just return the columns species and island, along with thos measured in mm</span></span>
+<span id="cb18-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href=""></a>  <span class="fu">select</span>(species, island, <span class="fu">ends_with</span>(<span class="st">"mm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="subsetting-a-data-frame-3" class="slide level2 slide-only unlisted">
+<h2>Subsetting a Data Frame</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="do">## Just return the columns species &amp; island along with bill measurements</span></span>
+<span id="cb19-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href=""></a>  <span class="fu">select</span>(species, island, <span class="fu">contains</span>(<span class="st">"bill"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="do">## Return the columns which are character vectors then place all other columns </span></span>
+<span id="cb20-2"><a href=""></a><span class="do">## after them. `where()` applies the logical test `is.character()` to each column</span></span>
+<span id="cb20-3"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href=""></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.character), <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="subsetting-a-data-frame-4" class="slide level2 slide-only unlisted">
+<h2>Subsetting a Data Frame</h2>
+<ul>
+<li>Column names above haven’t been quoted</li>
+<li><code>any_of()</code> and <code>all_of()</code> take character vectors</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="do">## `all_of` requires all columns to exist</span></span>
+<span id="cb21-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href=""></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"sex"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="do">## `any_of` will ignore any columns that don't exist</span></span>
+<span id="cb22-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href=""></a>  <span class="fu">select</span>(<span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"sex"</span>, <span class="st">"nonsense"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="excel-like-functions-in-dplyr" class="slide level2">
+<h2>Excel-Like Functions in <code>dplyr</code></h2>
+<ul>
+<li>Two common tasks in Excel are 1) sorting a column and 2) applying a filter</li>
+<li>In <code>dplyr</code> the relevant functons are <code>arrange()</code> and <code>filter()</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="do">## Show the penguins in order of weight. This will be ascending by default</span></span>
+<span id="cb23-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href=""></a>  <span class="fu">arrange</span>(body_mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 333 × 8
+   species   island   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;     &lt;chr&gt;             &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Chinstrap Dream              46.9          16.6               192        2700
+ 2 Adelie    Biscoe             36.5          16.6               181        2850
+ 3 Adelie    Biscoe             36.4          17.1               184        2850
+ 4 Adelie    Biscoe             34.5          18.1               187        2900
+ 5 Adelie    Dream              33.1          16.1               178        2900
+ 6 Adelie    Torgers…           38.6          17                 188        2900
+ 7 Chinstrap Dream              43.2          16.6               187        2900
+ 8 Adelie    Biscoe             37.9          18.6               193        2925
+ 9 Adelie    Dream              37            16.9               185        3000
+10 Adelie    Dream              37.3          16.8               192        3000
+# ℹ 323 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="excel-like-functions-in-dplyr-1" class="slide level2 slide-only unlisted">
+<h2>Excel-Like Functions in <code>dplyr</code></h2>
+<aside class="notes">
+<ul>
+<li>Notice we’re not saving any new objects here. We’re simply exploring our data</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<ul>
+<li>To sort in descending order, we wrap the column name inside <code>desc()</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="do">## Show the penguins in descending order of weight</span></span>
+<span id="cb25-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 333 × 8
+   species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;   &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Gentoo  Biscoe           49.2          15.2               221        6300
+ 2 Gentoo  Biscoe           59.6          17                 230        6050
+ 3 Gentoo  Biscoe           51.1          16.3               220        6000
+ 4 Gentoo  Biscoe           48.8          16.2               222        6000
+ 5 Gentoo  Biscoe           45.2          16.4               223        5950
+ 6 Gentoo  Biscoe           49.8          15.9               229        5950
+ 7 Gentoo  Biscoe           48.4          14.6               213        5850
+ 8 Gentoo  Biscoe           49.3          15.7               217        5850
+ 9 Gentoo  Biscoe           55.1          16                 230        5850
+10 Gentoo  Biscoe           49.5          16.2               229        5800
+# ℹ 323 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="applying-a-filter" class="slide level2">
+<h2>Applying a Filter</h2>
+<ul>
+<li>We can subset using <code>filter()</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="do">## Show only the penguins heavier than 4kg</span></span>
+<span id="cb27-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href=""></a>  <span class="fu">filter</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 167 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.2          19.6               195        4675
+ 2 Adelie  Torgersen           34.6          21.1               198        4400
+ 3 Adelie  Torgersen           42.5          20.7               197        4500
+ 4 Adelie  Torgersen           46            21.5               194        4200
+ 5 Adelie  Dream               39.2          21.1               196        4150
+ 6 Adelie  Dream               39.8          19.1               184        4650
+ 7 Adelie  Dream               44.1          19.7               196        4400
+ 8 Adelie  Dream               39.6          18.8               190        4600
+ 9 Adelie  Dream               42.3          21.2               191        4150
+10 Adelie  Biscoe              40.1          18.9               188        4300
+# ℹ 157 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="applying-a-filter-1" class="slide level2 slide-only unlisted">
+<h2>Applying a Filter</h2>
+<ul>
+<li>This relies on logical tests being performed on the column of interest</li>
+</ul>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Symbol</th>
+<th style="text-align: left;">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>==</code></td>
+<td style="text-align: left;"><em>Is equal to</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>!=</code></td>
+<td style="text-align: left;"><em>Is NOT equal to</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>&gt;=</code> / <code>&lt;=</code></td>
+<td style="text-align: left;"><em>Is greater/less than or equal to</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>&gt;</code> / <code>&lt;</code></td>
+<td style="text-align: left;"><em>Is greater/less than</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>%in%</code></td>
+<td style="text-align: left;"><em>Is IN a set of values</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>is.na()</code></td>
+<td style="text-align: left;"><em>Is a missing value (i.e.</em> <code>NA</code><em>)</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="applying-a-filter-2" class="slide level2 slide-only unlisted">
+<h2>Applying a Filter</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="do">## Show only the Chinstrap penguins heavier than 4kg</span></span>
+<span id="cb29-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href=""></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>, body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 15 × 8
+   species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Chinstrap Dream            46            18.9               195        4150
+ 2 Chinstrap Dream            52            18.1               201        4050
+ 3 Chinstrap Dream            50.5          19.6               201        4050
+ 4 Chinstrap Dream            49.2          18.2               195        4400
+ 5 Chinstrap Dream            52            19                 197        4150
+ 6 Chinstrap Dream            52.8          20                 205        4550
+ 7 Chinstrap Dream            54.2          20.8               201        4300
+ 8 Chinstrap Dream            51            18.8               203        4100
+ 9 Chinstrap Dream            52            20.7               210        4800
+10 Chinstrap Dream            53.5          19.9               205        4500
+11 Chinstrap Dream            50.8          18.5               201        4450
+12 Chinstrap Dream            49            19.6               212        4300
+13 Chinstrap Dream            50.7          19.7               203        4050
+14 Chinstrap Dream            49.3          19.9               203        4050
+15 Chinstrap Dream            50.8          19                 210        4100
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="applying-a-filter-3" class="slide level2 slide-only unlisted">
+<h2>Applying a Filter</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="do">## Show the Adelie or Chinstrap penguins</span></span>
+<span id="cb31-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href=""></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 214 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           36.7          19.3               193        3450
+ 5 Adelie  Torgersen           39.3          20.6               190        3650
+ 6 Adelie  Torgersen           38.9          17.8               181        3625
+ 7 Adelie  Torgersen           39.2          19.6               195        4675
+ 8 Adelie  Torgersen           41.1          17.6               182        3200
+ 9 Adelie  Torgersen           38.6          21.2               191        3800
+10 Adelie  Torgersen           34.6          21.1               198        4400
+# ℹ 204 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="applying-a-filter-4" class="slide level2 slide-only unlisted">
+<h2>Applying a Filter</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="do">## Alternatively, exclude the Gentoo penguins. This does the same as previously</span></span>
+<span id="cb33-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href=""></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 214 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           36.7          19.3               193        3450
+ 5 Adelie  Torgersen           39.3          20.6               190        3650
+ 6 Adelie  Torgersen           38.9          17.8               181        3625
+ 7 Adelie  Torgersen           39.2          19.6               195        4675
+ 8 Adelie  Torgersen           41.1          17.6               182        3200
+ 9 Adelie  Torgersen           38.6          21.2               191        3800
+10 Adelie  Torgersen           34.6          21.1               198        4400
+# ℹ 204 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="applying-a-filter-5" class="slide level2 slide-only unlisted">
+<h2>Applying a Filter</h2>
+<ul>
+<li><code>str_detect()</code> can also play a role here</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="do">## Match the patterns Ade or Chin to show only the Adelie or Chinstrap penguins</span></span>
+<span id="cb35-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">"Ade|Chin"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 214 × 8
+   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Adelie  Torgersen           39.1          18.7               181        3750
+ 2 Adelie  Torgersen           39.5          17.4               186        3800
+ 3 Adelie  Torgersen           40.3          18                 195        3250
+ 4 Adelie  Torgersen           36.7          19.3               193        3450
+ 5 Adelie  Torgersen           39.3          20.6               190        3650
+ 6 Adelie  Torgersen           38.9          17.8               181        3625
+ 7 Adelie  Torgersen           39.2          19.6               195        4675
+ 8 Adelie  Torgersen           41.1          17.6               182        3200
+ 9 Adelie  Torgersen           38.6          21.2               191        3800
+10 Adelie  Torgersen           34.6          21.1               198        4400
+# ℹ 204 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="combining-functions" class="slide level2">
+<h2>Combining Functions</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="do">## Match the patterns Ade or Chin to show only the Adelie or Chinstrap penguins</span></span>
+<span id="cb37-2"><a href=""></a><span class="do">## Show the results in decreasing order of weight</span></span>
+<span id="cb37-3"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">"Ade|Chin"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb37-5"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 214 × 8
+   species   island   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+   &lt;chr&gt;     &lt;chr&gt;             &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+ 1 Chinstrap Dream              52            20.7               210        4800
+ 2 Adelie    Biscoe             43.2          19                 197        4775
+ 3 Adelie    Biscoe             41            20                 203        4725
+ 4 Adelie    Torgers…           42.9          17.6               196        4700
+ 5 Adelie    Torgers…           39.2          19.6               195        4675
+ 6 Adelie    Dream              39.8          19.1               184        4650
+ 7 Adelie    Dream              39.6          18.8               190        4600
+ 8 Adelie    Biscoe             45.6          20.3               191        4600
+ 9 Chinstrap Dream              52.8          20                 205        4550
+10 Adelie    Torgers…           42.5          20.7               197        4500
+# ℹ 204 more rows
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="summarising-data" class="slide level2">
+<h2>Summarising Data</h2>
+<ul>
+<li>Creating tables of counts is simple <span class="math inline">\(\implies\)</span> just pass the column names to <code>count()</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href=""></a>  <span class="fu">count</span>(species, island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  species   island        n
+  &lt;chr&gt;     &lt;chr&gt;     &lt;int&gt;
+1 Adelie    Biscoe       44
+2 Adelie    Dream        55
+3 Adelie    Torgersen    47
+4 Chinstrap Dream        68
+5 Gentoo    Biscoe      119</code></pre>
+</div>
+</div>
+</section>
+<section id="creating-summary-plots" class="slide level2 slide-only unlisted">
+<h2>Creating Summary Plots</h2>
+<aside class="notes">
+<ul>
+<li>This is a great example of how powerful the piping approach is</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="do">## Create a summary on the fly, followed </span></span>
+<span id="cb41-2"><a href=""></a><span class="do">## by a very barplot showing how penguins</span></span>
+<span id="cb41-3"><a href=""></a><span class="do">## are distributed on the three islands</span></span>
+<span id="cb41-4"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb41-5"><a href=""></a>  <span class="fu">count</span>(species, island) <span class="sc">|&gt;</span></span>
+<span id="cb41-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(species, n, <span class="at">fill =</span> island)) <span class="sc">+</span></span>
+<span id="cb41-7"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb41-8"><a href=""></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb41-9"><a href=""></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="spreadsheet_slides_files/figure-revealjs/unnamed-chunk-24-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</section>
+<section id="summarising-data-1" class="slide level2 slide-only unlisted">
+<h2>Summarising Data</h2>
+<ul>
+<li>Sometimes we need more sophisticated summaries or summary values</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb42-3"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb42-4"><a href=""></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g)</span>
+<span id="cb42-5"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<ul>
+<li>To show these by any category we can use the <code>.by =</code> argument</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="do">## Find the mean &amp; sd of body mass by species</span></span>
+<span id="cb43-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb43-4"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb43-5"><a href=""></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g),</span>
+<span id="cb43-6"><a href=""></a>    <span class="at">.by =</span> species</span>
+<span id="cb43-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="summarising-data-2" class="slide level2 slide-only unlisted">
+<h2>Summarising Data</h2>
+<div style="font-size:90%">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="do">## Create a barplot with error bars</span></span>
+<span id="cb44-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb44-4"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb44-5"><a href=""></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g),</span>
+<span id="cb44-6"><a href=""></a>    <span class="at">.by =</span> species</span>
+<span id="cb44-7"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb44-8"><a href=""></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb44-9"><a href=""></a>    <span class="fu">aes</span>(species, mn_weight, <span class="at">fill =</span> species)</span>
+<span id="cb44-10"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb44-11"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb44-12"><a href=""></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb44-13"><a href=""></a>    <span class="fu">aes</span>(</span>
+<span id="cb44-14"><a href=""></a>      <span class="at">ymin =</span> mn_weight <span class="sc">-</span> sd_weight,</span>
+<span id="cb44-15"><a href=""></a>      <span class="at">ymax =</span> mn_weight <span class="sc">+</span> sd_weight</span>
+<span id="cb44-16"><a href=""></a>    ),</span>
+<span id="cb44-17"><a href=""></a>    <span class="at">width =</span> <span class="fl">0.3</span></span>
+<span id="cb44-18"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb44-19"><a href=""></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb44-20"><a href=""></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="spreadsheet_slides_files/figure-revealjs/unnamed-chunk-27-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="modifying-columns" class="slide level2">
+<h2>Modifying Columns</h2>
+<ul>
+<li>So far we’ve only selected, arranged, filtered and summarised existing columns</li>
+<li><code>mutate()</code> can be used to:
+<ol type="1">
+<li>Modify existing columns, or</li>
+<li>Add a new column</li>
+</ol></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Do we think any of these columns are categorical
+<ul>
+<li>We could turn these into factors!!!</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="modifying-columns-1" class="slide level2 slide-only unlisted">
+<h2>Modifying Columns</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45" data-code-line-numbers="1-4|5-7|8-10|1-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb45-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb45-3"><a href=""></a>    <span class="at">species =</span> <span class="fu">fct</span>(species),</span>
+<span id="cb45-4"><a href=""></a>    <span class="at">island =</span> <span class="fu">fct</span>(island),</span>
+<span id="cb45-5"><a href=""></a>    <span class="do">## The default order for `fct()` will be in order of appearance</span></span>
+<span id="cb45-6"><a href=""></a>    <span class="do">## Set levels manually to place female first</span></span>
+<span id="cb45-7"><a href=""></a>    <span class="at">sex =</span> <span class="fu">fct</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>)),</span>
+<span id="cb45-8"><a href=""></a>    <span class="do">## `fct()` requires a character vector</span></span>
+<span id="cb45-9"><a href=""></a>    <span class="do">## We can also pipe internally!!!</span></span>
+<span id="cb45-10"><a href=""></a>    <span class="at">year =</span> year <span class="sc">|&gt;</span> <span class="fu">as.character</span>() <span class="sc">|&gt;</span> <span class="fu">fct</span>()</span>
+<span id="cb45-11"><a href=""></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Have we changed the original data?</strong></p>
+</div>
+<div class="callout-content">
+<div class="fragment">
+<p>No, we’ve just changed it on the fly as we inspect it</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="modifying-columns-2" class="slide level2 slide-only unlisted">
+<h2>Modifying Columns</h2>
+<aside class="notes">
+<ul>
+<li>Leaving the comments here will be like a gift to future you when you can’t remember what you were thinking</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<ul>
+<li>I will usually modify columns like this when I’m loading the data</li>
+<li>This ensures the entire workflow uses the identical dataset from the beginning</li>
+</ul>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>my_penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/my_penguins.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-3"><a href=""></a>    <span class="at">species =</span> <span class="fu">fct</span>(species),</span>
+<span id="cb46-4"><a href=""></a>    <span class="at">island =</span> <span class="fu">fct</span>(island),</span>
+<span id="cb46-5"><a href=""></a>    <span class="do">## The default order for `fct()` will be in order of appearance</span></span>
+<span id="cb46-6"><a href=""></a>    <span class="do">## Set levels manually to place female first</span></span>
+<span id="cb46-7"><a href=""></a>    <span class="at">sex =</span> <span class="fu">fct</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>)),</span>
+<span id="cb46-8"><a href=""></a>    <span class="do">## `fct()` requires a character vector</span></span>
+<span id="cb46-9"><a href=""></a>    <span class="do">## We can also pipe internally!!!</span></span>
+<span id="cb46-10"><a href=""></a>    <span class="at">year =</span> year <span class="sc">|&gt;</span> <span class="fu">as.character</span>() <span class="sc">|&gt;</span> <span class="fu">fct</span>()</span>
+<span id="cb46-11"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="reshaping-data-with-tidyr" class="title-slide slide level1 center" data-background-color="#3c3c44" data-background-image="https://tidyr.tidyverse.org/logo.png" data-background-size="30%" data-background-opacity="0.4" data-background-position="80% 20%">
+<h1>Reshaping Data with <code>tidyr</code></h1>
+
+</section>
+<section id="using-tidyr" class="slide level2">
+<h2>Using <code>tidyr</code></h2>
+<ul>
+<li>The data structures so far have been great for plotting</li>
+<li>Generally we’ve seen data in long form
+<ul>
+<li>Each value type has it’s own column</li>
+</ul></li>
+<li>Summary tables can be a little different <span class="math inline">\(\implies\)</span> <code>tidyr</code>
+<ul>
+<li>Pivoting Data with <code>pivot_longer()</code> and <code>pivot_wider()</code></li>
+<li>Merging/Separating Columns with <code>unite()</code> and <code>separate()</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Earlier we found the mean &amp; sd of the weight by species and island
+<ul>
+<li>Let’s include sex then show results in seprate columns</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="changing-from-long-to-wide-form" class="slide level2">
+<h2>Changing From Long To Wide Form</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="do">## Calculate the mean weight by species, island and sex</span></span>
+<span id="cb47-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb47-4"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb47-5"><a href=""></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
+<span id="cb47-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="do">## Calculate the mean weight by species, island and sex</span></span>
+<span id="cb48-2"><a href=""></a><span class="do">## Then place values for male &amp; female in separate columns</span></span>
+<span id="cb48-3"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb48-4"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb48-5"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb48-6"><a href=""></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
+<span id="cb48-7"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb48-8"><a href=""></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex, <span class="at">values_from =</span> mn_weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<ul>
+<li>This is a great summary table already <span class="math inline">\(\implies\)</span> how do we include SD?</li>
+</ul>
+</div>
+</section>
+<section id="changing-from-long-to-wide-form-1" class="slide level2 slide-only unlisted">
+<h2>Changing From Long To Wide Form</h2>
+<ul>
+<li>Pivot wider can move multiple columns into wide format</li>
+<li>The <code>tidyselect</code> helper <code>ends_with()</code> we saw earlier will work here too</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb49" data-code-line-numbers="4-5|8-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb49-2"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb49-3"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb49-4"><a href=""></a>    <span class="do">## This is a fitted value so standard error may be more appropriate</span></span>
+<span id="cb49-5"><a href=""></a>    <span class="at">se_weight =</span> <span class="fu">sd</span>(body_mass_g) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()),</span>
+<span id="cb49-6"><a href=""></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
+<span id="cb49-7"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb49-8"><a href=""></a>  <span class="do">## Use `ends_with("weight")` to pivot the appropriate columns</span></span>
+<span id="cb49-9"><a href=""></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex, <span class="at">values_from =</span> <span class="fu">ends_with</span>(<span class="st">"weight"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="combining-columns" class="slide level2">
+<h2>Combining Columns</h2>
+<div style="font-size:95%">
+<ul>
+<li>Now we have the mean &amp; standard error</li>
+<li>How do we combine these for a nice printed table <span class="fragment"><span class="math inline">\(\implies\)</span> <code>unite()</code></span></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>The first argument is the name of the new column</li>
+<li>Then use <code>tidyselect</code> helpers to select the columns to “unite”</li>
+</ul>
+</div>
+<div class="fragment">
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb50" data-code-line-numbers="1-7|8-9|10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb50-2"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb50-3"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb50-4"><a href=""></a>    <span class="at">se_weight =</span> <span class="fu">sd</span>(body_mass_g) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()),</span>
+<span id="cb50-5"><a href=""></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
+<span id="cb50-6"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb50-7"><a href=""></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex, <span class="at">values_from =</span> <span class="fu">ends_with</span>(<span class="st">"weight"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb50-8"><a href=""></a>  <span class="do">## Include the underscore for the male columns, but not for the female columns</span></span>
+<span id="cb50-9"><a href=""></a>  <span class="fu">unite</span>(male, <span class="fu">ends_with</span>(<span class="st">"_male"</span>), <span class="at">sep =</span> <span class="st">" +/- "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb50-10"><a href=""></a>  <span class="fu">unite</span>(female, <span class="fu">ends_with</span>(<span class="st">"female"</span>), <span class="at">sep =</span> <span class="st">" +/- "</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Are we happy with this? <span class="fragment">No.&nbsp;We need to round the values</span></strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="applying-functions-to-multiple-columns" class="slide level2">
+<h2>Applying Functions To Multiple Columns</h2>
+<ul>
+<li>Sometimes we need to apply the same function to multiple columns</li>
+<li>The function <code>across()</code> is perfect for this situation
+<ul>
+<li>Can be applied inside <code>mutate()</code> or <code>summarise()</code></li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>First we specify the columns using the <code>tidyselect</code> helpers</li>
+<li>Then we provide the function to apply</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><code>across(.cols, .fns)</code></li>
+</ul>
+</div>
+</section>
+<section id="applying-functions-to-multiple-columns-1" class="slide level2 slide-only unlisted">
+<h2>Applying Functions To Multiple Columns</h2>
+<ul>
+<li>Here we’ll call <code>across(ends_with("male"), round)</code> within a <code>mutate()</code></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb51" data-code-line-numbers="10-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb51-2"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb51-3"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb51-4"><a href=""></a>    <span class="do">## This is a fitted value so standard error may be more appropriate</span></span>
+<span id="cb51-5"><a href=""></a>    <span class="at">se_weight =</span> <span class="fu">sd</span>(body_mass_g) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()),</span>
+<span id="cb51-6"><a href=""></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
+<span id="cb51-7"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb51-8"><a href=""></a>  <span class="do">## Use `ends_with("weight")` to pivot the appropriate columns</span></span>
+<span id="cb51-9"><a href=""></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex, <span class="at">values_from =</span> <span class="fu">ends_with</span>(<span class="st">"weight"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb51-10"><a href=""></a>  <span class="do">## Apply the function `round()` to all four columns ending with male</span></span>
+<span id="cb51-11"><a href=""></a>  <span class="do">## This will default to zero digits, which is fine for this table</span></span>
+<span id="cb51-12"><a href=""></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"male"</span>), round)) <span class="sc">|&gt;</span></span>
+<span id="cb51-13"><a href=""></a>  <span class="fu">unite</span>(male, <span class="fu">ends_with</span>(<span class="st">"_male"</span>), <span class="at">sep =</span> <span class="st">" +/- "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb51-14"><a href=""></a>  <span class="fu">unite</span>(female, <span class="fu">ends_with</span>(<span class="st">"female"</span>), <span class="at">sep =</span> <span class="st">" +/- "</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="shifting-from-wide-to-long-form" class="slide level2">
+<h2>Shifting From Wide to Long Form</h2>
+<ul>
+<li>The same principles apply when using <code>pivot_longer()</code>
+<ul>
+<li>Won’t explore in as much detail</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="do">## Place all measurements taken in 'mm' into the same column</span></span>
+<span id="cb53-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="fu">ends_with</span>(<span class="st">"mm"</span>), <span class="at">names_to =</span> <span class="st">"measurement"</span>, <span class="at">values_to =</span> <span class="st">"mm"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 999 × 7
+   species island    body_mass_g sex    year  measurement          mm
+   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt; &lt;chr&gt;             &lt;dbl&gt;
+ 1 Adelie  Torgersen        3750 male   2007  bill_length_mm     39.1
+ 2 Adelie  Torgersen        3750 male   2007  bill_depth_mm      18.7
+ 3 Adelie  Torgersen        3750 male   2007  flipper_length_mm 181  
+ 4 Adelie  Torgersen        3800 female 2007  bill_length_mm     39.5
+ 5 Adelie  Torgersen        3800 female 2007  bill_depth_mm      17.4
+ 6 Adelie  Torgersen        3800 female 2007  flipper_length_mm 186  
+ 7 Adelie  Torgersen        3250 female 2007  bill_length_mm     40.3
+ 8 Adelie  Torgersen        3250 female 2007  bill_depth_mm      18  
+ 9 Adelie  Torgersen        3250 female 2007  flipper_length_mm 195  
+10 Adelie  Torgersen        3450 female 2007  bill_length_mm     36.7
+# ℹ 989 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="separating-values-into-multiple-columns" class="slide level2">
+<h2>Separating Values Into Multiple Columns</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb55" data-code-line-numbers="4-5|6-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="do">## Place all measurements taken in 'mm' into the same column</span></span>
+<span id="cb55-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb55-3"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="fu">ends_with</span>(<span class="st">"mm"</span>), <span class="at">names_to =</span> <span class="st">"measurement"</span>, <span class="at">values_to =</span> <span class="st">"mm"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb55-4"><a href=""></a>  <span class="do">## Now separate the values into body part &amp; measurement type</span></span>
+<span id="cb55-5"><a href=""></a>  <span class="fu">separate</span>(measurement, <span class="fu">c</span>(<span class="st">"body_part"</span>, <span class="st">"measurement_type"</span>, <span class="st">"junk"</span>), <span class="at">sep =</span> <span class="st">"_"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb55-6"><a href=""></a>  <span class="do">## We can get rid of the junk column by using the `-` symbol before the column name</span></span>
+<span id="cb55-7"><a href=""></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>junk)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 999 × 8
+   species island    body_mass_g sex    year  body_part measurement_type    mm
+   &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt; &lt;chr&gt;     &lt;chr&gt;            &lt;dbl&gt;
+ 1 Adelie  Torgersen        3750 male   2007  bill      length            39.1
+ 2 Adelie  Torgersen        3750 male   2007  bill      depth             18.7
+ 3 Adelie  Torgersen        3750 male   2007  flipper   length           181  
+ 4 Adelie  Torgersen        3800 female 2007  bill      length            39.5
+ 5 Adelie  Torgersen        3800 female 2007  bill      depth             17.4
+ 6 Adelie  Torgersen        3800 female 2007  flipper   length           186  
+ 7 Adelie  Torgersen        3250 female 2007  bill      length            40.3
+ 8 Adelie  Torgersen        3250 female 2007  bill      depth             18  
+ 9 Adelie  Torgersen        3250 female 2007  flipper   length           195  
+10 Adelie  Torgersen        3450 female 2007  bill      length            36.7
+# ℹ 989 more rows</code></pre>
+</div>
+</div>
+</section>
+
+<section id="closing-comments" class="slide level2">
+<h2>Closing Comments</h2>
+<div style="font-size:95%">
+<ul>
+<li>Functions in <code>dplyr</code> are often based on <code>SQL</code> functions
+<ul>
+<li><code>dplyr</code> was first released in 2014 <sup>1</sup></li>
+</ul></li>
+<li>Many other packages already contained a <code>select()</code>, <code>filter()</code> etc function</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>If a <code>dplyr</code> function gives a strange error <br><span class="math inline">\(\implies\)</span> probably loaded another package with a function of the same name</li>
+<li>Common cases are <code>select()</code>, <code>filter()</code>, <code>slice()</code>, <code>count()</code>, <code>n()</code></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>The solution is to call explicitly from <code>dplyr</code> using the <code>namespace</code>
+<ul>
+<li>e.g.&nbsp;<code>dplyr::select()</code>, <code>dplyr::filter()</code>, <code>dplyr::count()</code> etc</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+<aside><ol class="aside-footnotes"><li id="fn1"><p>https://hadley.github.io/25-tidyverse-history/index-preview.html#key-innovations</p></li></ol></aside></section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="assets/bodl_logo_white_background.jpg" class="slide-logo"></p>
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="spreadsheet_slides_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="spreadsheet_slides_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
+              }
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script type="text/javascript">
+      Reveal.on('ready', event => {
+        if (event.indexh === 0) {
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          Reveal.configure({ slideNumber: null });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        }
+        if (event.indexh === 1) {
+          Reveal.configure({ slideNumber: 'c' });
+          document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        }
+      });
+    </script>
+    
+
+</body></html>
