@@ -59,7 +59,6 @@ knitr:
     fig.align: center
     fig.width: 6
     fig.height: 6
-    code-line-numbers: true
 ---
 
 
@@ -331,7 +330,7 @@ my_penguins |>
 
 ## Applying a Filter {.slide-only .unlisted}
 
-- This relies on logical tests being performed on the column of interest
+- `filter()` relies on logical tests being performed on the column of interest
 
 | Symbol   | Meaning           |
 |:-------- |:----------------- |
@@ -341,6 +340,10 @@ my_penguins |>
 | `>` / `<`   | *Is greater/less than* |
 | `%in%`   | *Is IN a set of values* |
 | `is.na()` | *Is a missing value (i.e.* `NA`*)* |
+
+::: {.fragment}
+- In most languages, `!` means *NOT*
+:::
 
 ## Applying a Filter {.slide-only .unlisted}
 
@@ -759,23 +762,23 @@ my_penguins |>
 
 ## Closing Comments
 
-::: {style="font-size:95%"}
 
 - Functions in `dplyr` are often based on `SQL` functions
     + `dplyr` was first released in 2014 [^1]
-- Many other packages already contained a `select()`, `filter()` etc function
+- Some other packages already contained a `select()`, `filter()` etc
+    + Especially those with a SQL back-end
 
-::: {.fragment}
+## Closing Comments {.slide-only .unlisted}
+
 - If a `dplyr` function gives a strange error <br>$\implies$ probably loaded another package with a function of the same name
 - Common cases are `select()`, `filter()`, `slice()`, `count()`, `n()`
-:::
 
 ::: {.fragment}
 - The solution is to call explicitly from `dplyr` using the `namespace`
     + e.g. `dplyr::select()`, `dplyr::filter()`, `dplyr::count()` etc
+    + The `namespace` is the formal title for all function names within a package
     
 :::
 
-:::
 
 [^1]: https://hadley.github.io/25-tidyverse-history/index-preview.html#key-innovations

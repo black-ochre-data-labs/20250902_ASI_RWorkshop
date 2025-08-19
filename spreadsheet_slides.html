@@ -224,7 +224,7 @@ Dr Stevie Pederson
 <li>Load the tidyverse</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><br>We’ll cover:</p>
@@ -280,7 +280,7 @@ Dr Stevie Pederson
 <div class="columns">
 <div class="column">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">head</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speed dist
 1     4    2
@@ -294,7 +294,7 @@ Dr Stevie Pederson
 </div><div class="column">
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>cars <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a>cars <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  speed dist
 1     4    2
@@ -319,7 +319,7 @@ Dr Stevie Pederson
 <li>We’ll use <code>my_penguins</code> for this session</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>my_penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/my_penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/my_penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <ul>
@@ -327,10 +327,10 @@ Dr Stevie Pederson
 <li>We can easily get key attributes about these objects</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">dim</span>(my_penguins)</span>
-<span id="cb9-2"><a href=""></a><span class="fu">nrow</span>(my_penguins)</span>
-<span id="cb9-3"><a href=""></a><span class="fu">ncol</span>(my_penguins)</span>
-<span id="cb9-4"><a href=""></a><span class="fu">colnames</span>(my_penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(my_penguins)</span>
+<span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(my_penguins)</span>
+<span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(my_penguins)</span>
+<span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(my_penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -355,7 +355,7 @@ Dr Stevie Pederson
 <li>We could also perform these operations the pipe (<code>|&gt;</code>)</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span> <span class="fu">colnames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span> <span class="fu">colnames</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "species"           "island"            "bill_length_mm"   
 [4] "bill_depth_mm"     "flipper_length_mm" "body_mass_g"      
@@ -367,9 +367,9 @@ Dr Stevie Pederson
 <li>This approach combines nicely with <code>stringr</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href=""></a>  <span class="fu">colnames</span>() <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href=""></a>  <span class="fu">str_subset</span>(<span class="at">pattern =</span> <span class="st">"bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_subset</span>(<span class="at">pattern =</span> <span class="st">"bill"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "bill_length_mm" "bill_depth_mm" </code></pre>
 </div>
@@ -382,7 +382,7 @@ Dr Stevie Pederson
 <li>We can subset a <code>tibble</code> using <code>[,]</code> just like a <code>data.frame</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a>my_penguins[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"body_mass_g"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"body_mass_g"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   species island    body_mass_g
@@ -406,10 +406,10 @@ Dr Stevie Pederson
 </ul>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="do">## Grab the first 3 rows from the species, island and body_mass_g columns</span></span>
-<span id="cb16-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a href=""></a>  <span class="fu">select</span>(species, island, body_mass_g) <span class="sc">|&gt;</span></span>
-<span id="cb16-4"><a href=""></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Grab the first 3 rows from the species, island and body_mass_g columns</span></span>
+<span id="cb16-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, body_mass_g) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   species island    body_mass_g
@@ -435,26 +435,26 @@ Dr Stevie Pederson
 </ul>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="do">## Just return the columns species and island, along with thos measured in mm</span></span>
-<span id="cb18-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href=""></a>  <span class="fu">select</span>(species, island, <span class="fu">ends_with</span>(<span class="st">"mm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Just return the columns species and island, along with thos measured in mm</span></span>
+<span id="cb18-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, <span class="fu">ends_with</span>(<span class="st">"mm"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
 <section id="subsetting-a-data-frame-3" class="slide level2 slide-only unlisted">
 <h2>Subsetting a Data Frame</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="do">## Just return the columns species &amp; island along with bill measurements</span></span>
-<span id="cb19-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href=""></a>  <span class="fu">select</span>(species, island, <span class="fu">contains</span>(<span class="st">"bill"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Just return the columns species &amp; island along with bill measurements</span></span>
+<span id="cb19-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, island, <span class="fu">contains</span>(<span class="st">"bill"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="do">## Return the columns which are character vectors then place all other columns </span></span>
-<span id="cb20-2"><a href=""></a><span class="do">## after them. `where()` applies the logical test `is.character()` to each column</span></span>
-<span id="cb20-3"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb20-4"><a href=""></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.character), <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Return the columns which are character vectors then place all other columns </span></span>
+<span id="cb20-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## after them. `where()` applies the logical test `is.character()` to each column</span></span>
+<span id="cb20-3"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.character), <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -465,16 +465,16 @@ Dr Stevie Pederson
 <li><code>any_of()</code> and <code>all_of()</code> take character vectors</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="do">## `all_of` requires all columns to exist</span></span>
-<span id="cb21-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href=""></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"sex"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## `all_of` requires all columns to exist</span></span>
+<span id="cb21-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"sex"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="do">## `any_of` will ignore any columns that don't exist</span></span>
-<span id="cb22-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href=""></a>  <span class="fu">select</span>(<span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"sex"</span>, <span class="st">"nonsense"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## `any_of` will ignore any columns that don't exist</span></span>
+<span id="cb22-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"sex"</span>, <span class="st">"nonsense"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -485,9 +485,9 @@ Dr Stevie Pederson
 <li>In <code>dplyr</code> the relevant functons are <code>arrange()</code> and <code>filter()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="do">## Show the penguins in order of weight. This will be ascending by default</span></span>
-<span id="cb23-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb23-3"><a href=""></a>  <span class="fu">arrange</span>(body_mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the penguins in order of weight. This will be ascending by default</span></span>
+<span id="cb23-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(body_mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 333 × 8
    species   island   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -528,9 +528,9 @@ Dr Stevie Pederson
 <li>To sort in descending order, we wrap the column name inside <code>desc()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="do">## Show the penguins in descending order of weight</span></span>
-<span id="cb25-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb25-3"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the penguins in descending order of weight</span></span>
+<span id="cb25-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 333 × 8
    species island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -556,9 +556,9 @@ Dr Stevie Pederson
 <li>We can subset using <code>filter()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="do">## Show only the penguins heavier than 4kg</span></span>
-<span id="cb27-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a href=""></a>  <span class="fu">filter</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Show only the penguins heavier than 4kg</span></span>
+<span id="cb27-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 167 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -581,7 +581,7 @@ Dr Stevie Pederson
 <section id="applying-a-filter-1" class="slide level2 slide-only unlisted">
 <h2>Applying a Filter</h2>
 <ul>
-<li>This relies on logical tests being performed on the column of interest</li>
+<li><code>filter()</code> relies on logical tests being performed on the column of interest</li>
 </ul>
 <table class="caption-top">
 <thead>
@@ -617,13 +617,18 @@ Dr Stevie Pederson
 </tr>
 </tbody>
 </table>
+<div class="fragment">
+<ul>
+<li>In most languages, <code>!</code> means <em>NOT</em></li>
+</ul>
+</div>
 </section>
 <section id="applying-a-filter-2" class="slide level2 slide-only unlisted">
 <h2>Applying a Filter</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a><span class="do">## Show only the Chinstrap penguins heavier than 4kg</span></span>
-<span id="cb29-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb29-3"><a href=""></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>, body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Show only the Chinstrap penguins heavier than 4kg</span></span>
+<span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">"Chinstrap"</span>, body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 8
    species   island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -650,9 +655,9 @@ Dr Stevie Pederson
 <section id="applying-a-filter-3" class="slide level2 slide-only unlisted">
 <h2>Applying a Filter</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a><span class="do">## Show the Adelie or Chinstrap penguins</span></span>
-<span id="cb31-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a href=""></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the Adelie or Chinstrap penguins</span></span>
+<span id="cb31-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>, <span class="st">"Chinstrap"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 214 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -675,9 +680,9 @@ Dr Stevie Pederson
 <section id="applying-a-filter-4" class="slide level2 slide-only unlisted">
 <h2>Applying a Filter</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="do">## Alternatively, exclude the Gentoo penguins. This does the same as previously</span></span>
-<span id="cb33-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb33-3"><a href=""></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Alternatively, exclude the Gentoo penguins. This does the same as previously</span></span>
+<span id="cb33-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb33-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">!=</span> <span class="st">"Gentoo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 214 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -703,9 +708,9 @@ Dr Stevie Pederson
 <li><code>str_detect()</code> can also play a role here</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="do">## Match the patterns Ade or Chin to show only the Adelie or Chinstrap penguins</span></span>
-<span id="cb35-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb35-3"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">"Ade|Chin"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Match the patterns Ade or Chin to show only the Adelie or Chinstrap penguins</span></span>
+<span id="cb35-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb35-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">"Ade|Chin"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 214 × 8
    species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -728,11 +733,11 @@ Dr Stevie Pederson
 <section id="combining-functions" class="slide level2">
 <h2>Combining Functions</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="do">## Match the patterns Ade or Chin to show only the Adelie or Chinstrap penguins</span></span>
-<span id="cb37-2"><a href=""></a><span class="do">## Show the results in decreasing order of weight</span></span>
-<span id="cb37-3"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb37-4"><a href=""></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">"Ade|Chin"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb37-5"><a href=""></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Match the patterns Ade or Chin to show only the Adelie or Chinstrap penguins</span></span>
+<span id="cb37-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Show the results in decreasing order of weight</span></span>
+<span id="cb37-3"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">"Ade|Chin"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb37-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 214 × 8
    species   island   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
@@ -758,8 +763,8 @@ Dr Stevie Pederson
 <li>Creating tables of counts is simple <span class="math inline">\(\implies\)</span> just pass the column names to <code>count()</code></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb39-2"><a href=""></a>  <span class="fu">count</span>(species, island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb39-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   species   island        n
@@ -791,15 +796,15 @@ Dr Stevie Pederson
       }</style></aside>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="do">## Create a summary on the fly, followed </span></span>
-<span id="cb41-2"><a href=""></a><span class="do">## by a very barplot showing how penguins</span></span>
-<span id="cb41-3"><a href=""></a><span class="do">## are distributed on the three islands</span></span>
-<span id="cb41-4"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb41-5"><a href=""></a>  <span class="fu">count</span>(species, island) <span class="sc">|&gt;</span></span>
-<span id="cb41-6"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(species, n, <span class="at">fill =</span> island)) <span class="sc">+</span></span>
-<span id="cb41-7"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb41-8"><a href=""></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
-<span id="cb41-9"><a href=""></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a summary on the fly, followed </span></span>
+<span id="cb41-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## by a very barplot showing how penguins</span></span>
+<span id="cb41-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## are distributed on the three islands</span></span>
+<span id="cb41-4"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb41-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island) <span class="sc">|&gt;</span></span>
+<span id="cb41-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(species, n, <span class="at">fill =</span> island)) <span class="sc">+</span></span>
+<span id="cb41-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb41-8"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb41-9"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -816,24 +821,24 @@ Dr Stevie Pederson
 <li>Sometimes we need more sophisticated summaries or summary values</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb42-3"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
-<span id="cb42-4"><a href=""></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g)</span>
-<span id="cb42-5"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb42-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb42-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb42-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g)</span>
+<span id="cb42-5"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <ul>
 <li>To show these by any category we can use the <code>.by =</code> argument</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="do">## Find the mean &amp; sd of body mass by species</span></span>
-<span id="cb43-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb43-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb43-4"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
-<span id="cb43-5"><a href=""></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g),</span>
-<span id="cb43-6"><a href=""></a>    <span class="at">.by =</span> species</span>
-<span id="cb43-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Find the mean &amp; sd of body mass by species</span></span>
+<span id="cb43-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb43-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb43-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g),</span>
+<span id="cb43-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> species</span>
+<span id="cb43-7"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -842,26 +847,26 @@ Dr Stevie Pederson
 <div style="font-size:90%">
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="do">## Create a barplot with error bars</span></span>
-<span id="cb44-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb44-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb44-4"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
-<span id="cb44-5"><a href=""></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g),</span>
-<span id="cb44-6"><a href=""></a>    <span class="at">.by =</span> species</span>
-<span id="cb44-7"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb44-8"><a href=""></a>  <span class="fu">ggplot</span>(</span>
-<span id="cb44-9"><a href=""></a>    <span class="fu">aes</span>(species, mn_weight, <span class="at">fill =</span> species)</span>
-<span id="cb44-10"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb44-11"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb44-12"><a href=""></a>  <span class="fu">geom_errorbar</span>(</span>
-<span id="cb44-13"><a href=""></a>    <span class="fu">aes</span>(</span>
-<span id="cb44-14"><a href=""></a>      <span class="at">ymin =</span> mn_weight <span class="sc">-</span> sd_weight,</span>
-<span id="cb44-15"><a href=""></a>      <span class="at">ymax =</span> mn_weight <span class="sc">+</span> sd_weight</span>
-<span id="cb44-16"><a href=""></a>    ),</span>
-<span id="cb44-17"><a href=""></a>    <span class="at">width =</span> <span class="fl">0.3</span></span>
-<span id="cb44-18"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb44-19"><a href=""></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
-<span id="cb44-20"><a href=""></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a barplot with error bars</span></span>
+<span id="cb44-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb44-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb44-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd_weight =</span> <span class="fu">sd</span>(body_mass_g),</span>
+<span id="cb44-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> species</span>
+<span id="cb44-7"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb44-8"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(</span>
+<span id="cb44-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(species, mn_weight, <span class="at">fill =</span> species)</span>
+<span id="cb44-10"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb44-12"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(</span>
+<span id="cb44-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb44-14"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymin =</span> mn_weight <span class="sc">-</span> sd_weight,</span>
+<span id="cb44-15"><a href="" aria-hidden="true" tabindex="-1"></a>      <span class="at">ymax =</span> mn_weight <span class="sc">+</span> sd_weight</span>
+<span id="cb44-16"><a href="" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb44-17"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">width =</span> <span class="fl">0.3</span></span>
+<span id="cb44-18"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-19"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb44-20"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -948,17 +953,17 @@ Dr Stevie Pederson
 </ul>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a>my_penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/my_penguins.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb46-2"><a href=""></a>  <span class="fu">mutate</span>(</span>
-<span id="cb46-3"><a href=""></a>    <span class="at">species =</span> <span class="fu">fct</span>(species),</span>
-<span id="cb46-4"><a href=""></a>    <span class="at">island =</span> <span class="fu">fct</span>(island),</span>
-<span id="cb46-5"><a href=""></a>    <span class="do">## The default order for `fct()` will be in order of appearance</span></span>
-<span id="cb46-6"><a href=""></a>    <span class="do">## Set levels manually to place female first</span></span>
-<span id="cb46-7"><a href=""></a>    <span class="at">sex =</span> <span class="fu">fct</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>)),</span>
-<span id="cb46-8"><a href=""></a>    <span class="do">## `fct()` requires a character vector</span></span>
-<span id="cb46-9"><a href=""></a>    <span class="do">## We can also pipe internally!!!</span></span>
-<span id="cb46-10"><a href=""></a>    <span class="at">year =</span> year <span class="sc">|&gt;</span> <span class="fu">as.character</span>() <span class="sc">|&gt;</span> <span class="fu">fct</span>()</span>
-<span id="cb46-11"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/my_penguins.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb46-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-3"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">species =</span> <span class="fu">fct</span>(species),</span>
+<span id="cb46-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">island =</span> <span class="fu">fct</span>(island),</span>
+<span id="cb46-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="do">## The default order for `fct()` will be in order of appearance</span></span>
+<span id="cb46-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Set levels manually to place female first</span></span>
+<span id="cb46-7"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">fct</span>(sex, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"female"</span>, <span class="st">"male"</span>)),</span>
+<span id="cb46-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="do">## `fct()` requires a character vector</span></span>
+<span id="cb46-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="do">## We can also pipe internally!!!</span></span>
+<span id="cb46-10"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> year <span class="sc">|&gt;</span> <span class="fu">as.character</span>() <span class="sc">|&gt;</span> <span class="fu">fct</span>()</span>
+<span id="cb46-11"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section></section>
@@ -993,24 +998,24 @@ Dr Stevie Pederson
 <section id="changing-from-long-to-wide-form" class="slide level2">
 <h2>Changing From Long To Wide Form</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="do">## Calculate the mean weight by species, island and sex</span></span>
-<span id="cb47-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb47-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb47-4"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
-<span id="cb47-5"><a href=""></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
-<span id="cb47-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculate the mean weight by species, island and sex</span></span>
+<span id="cb47-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb47-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb47-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
+<span id="cb47-6"><a href="" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><br></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="do">## Calculate the mean weight by species, island and sex</span></span>
-<span id="cb48-2"><a href=""></a><span class="do">## Then place values for male &amp; female in separate columns</span></span>
-<span id="cb48-3"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb48-4"><a href=""></a>  <span class="fu">summarise</span>(</span>
-<span id="cb48-5"><a href=""></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
-<span id="cb48-6"><a href=""></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
-<span id="cb48-7"><a href=""></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb48-8"><a href=""></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex, <span class="at">values_from =</span> mn_weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Calculate the mean weight by species, island and sex</span></span>
+<span id="cb48-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Then place values for male &amp; female in separate columns</span></span>
+<span id="cb48-3"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb48-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb48-5"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">mn_weight =</span> <span class="fu">mean</span>(body_mass_g),</span>
+<span id="cb48-6"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(species, island, sex)</span>
+<span id="cb48-7"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb48-8"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex, <span class="at">values_from =</span> mn_weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -1134,9 +1139,9 @@ Dr Stevie Pederson
 </ul></li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="do">## Place all measurements taken in 'mm' into the same column</span></span>
-<span id="cb53-2"><a href=""></a>my_penguins <span class="sc">|&gt;</span></span>
-<span id="cb53-3"><a href=""></a>  <span class="fu">pivot_longer</span>(<span class="fu">ends_with</span>(<span class="st">"mm"</span>), <span class="at">names_to =</span> <span class="st">"measurement"</span>, <span class="at">values_to =</span> <span class="st">"mm"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Place all measurements taken in 'mm' into the same column</span></span>
+<span id="cb53-2"><a href="" aria-hidden="true" tabindex="-1"></a>my_penguins <span class="sc">|&gt;</span></span>
+<span id="cb53-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">ends_with</span>(<span class="st">"mm"</span>), <span class="at">names_to =</span> <span class="st">"measurement"</span>, <span class="at">values_to =</span> <span class="st">"mm"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 999 × 7
    species island    body_mass_g sex    year  measurement          mm
@@ -1186,31 +1191,34 @@ Dr Stevie Pederson
 
 <section id="closing-comments" class="slide level2">
 <h2>Closing Comments</h2>
-<div style="font-size:95%">
 <ul>
 <li>Functions in <code>dplyr</code> are often based on <code>SQL</code> functions
 <ul>
 <li><code>dplyr</code> was first released in 2014 <sup>1</sup></li>
 </ul></li>
-<li>Many other packages already contained a <code>select()</code>, <code>filter()</code> etc function</li>
+<li>Some other packages already contained a <code>select()</code>, <code>filter()</code> etc
+<ul>
+<li>Especially those with a SQL back-end</li>
+</ul></li>
 </ul>
-<div class="fragment">
+<aside><ol class="aside-footnotes"><li id="fn1"><p>https://hadley.github.io/25-tidyverse-history/index-preview.html#key-innovations</p></li></ol></aside></section>
+<section id="closing-comments-1" class="slide level2 slide-only unlisted">
+<h2>Closing Comments</h2>
 <ul>
 <li>If a <code>dplyr</code> function gives a strange error <br><span class="math inline">\(\implies\)</span> probably loaded another package with a function of the same name</li>
 <li>Common cases are <code>select()</code>, <code>filter()</code>, <code>slice()</code>, <code>count()</code>, <code>n()</code></li>
 </ul>
-</div>
 <div class="fragment">
 <ul>
 <li>The solution is to call explicitly from <code>dplyr</code> using the <code>namespace</code>
 <ul>
 <li>e.g.&nbsp;<code>dplyr::select()</code>, <code>dplyr::filter()</code>, <code>dplyr::count()</code> etc</li>
+<li>The <code>namespace</code> is the formal title for all function names within a package</li>
 </ul></li>
 </ul>
 </div>
-</div>
 
-<aside><ol class="aside-footnotes"><li id="fn1"><p>https://hadley.github.io/25-tidyverse-history/index-preview.html#key-innovations</p></li></ol></aside></section></section>
+</section></section>
 
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

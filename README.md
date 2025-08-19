@@ -39,4 +39,4 @@ All data for the session is available [here](data.zip).
 | 9:00 - 10:30 | Working With Spreadsheet-like Data | [Tidying Data Frames](spreadsheet.html) | 100min |
 | 10:30 - 11:00 | Morning Tea Break |  |  |
 |  | Advanced plotting | [Advanced Plotting](advanced_ggplot.html) |  |
-| 11:00 - 13:00 | RMarkdown | [RMarkdown](rmarkdown.html) |  |
+| 11:00 - 13:00 | RMarkdown | [RMarkdown](rmarkdown.html) | 60min |
