@@ -1,0 +1,330 @@
+---
+title: "Putting It All Together: Advanced Plotting"
+subtitle: "ASI: Introduction to R"
+author: "Dr Stevie Pederson"
+institute: |
+  | Black Ochre Data Labs
+  | The Kids Research Institute Australia
+date: "2025-09-03"
+date-format: long
+bibliography: bibliography.bib
+title-slide-attributes:
+    data-background-color: "#3d3d40"
+    data-background-image: assets/bodl_logo_white_background.jpg
+    data-background-opacity: "0.3"
+    data-background-size: "90%"
+editor: source
+format: 
+  revealjs:
+    theme: [bodl.scss]
+    code-line-numbers: false
+    code-tools: true
+    logo: assets/bodl_logo_white_background.jpg
+    height: 720
+    width: 1280
+    sansfont: Times New Roman
+    slide-number: c
+    show-slide-number: all
+  html: 
+    css: [bodl.scss, extra.css]
+    output-file: advanced_ggplot.html
+    embed-resources: true    
+    toc: true
+    toc-depth: 2
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+      }
+      if (event.indexh === 1) { 
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+      }
+    });
+  </script>      
+knitr: 
+  opts_chunk: 
+    echo: true
+    include: true
+    warning: false
+    message: false
+    fig.align: center
+    fig.width: 6
+    fig.height: 6
+---
+
+
+# Customising Figures<br>With `ggplot2` {background-color="#3d3d40" background-image=https://raw.githubusercontent.com/rstudio/hex-stickers/main/PNG/ggplot2.png background-size="25%" background-opacity="0.4" background-position='80% 20%'}
+
+## Recap
+
+- Already learnt how to pipe data into `ggplot`
+    + Can modify data 'on the fly'
+    + Don't need multiple similar objects
+- Explored `geom_point()`, `geom_col()`, `geom_boxplot()`
+    + Used scales to modify colour, shape etc
+    
+::: {.fragment}
+- Tweaking plots for publication
+    + Digging deeper with scales
+    + Using `theme()` & `ggsave()`
+
+:::
+
+## Setup
+
+::: {.notes}
+Some of those `NA` values will be a challenge from time to time
+:::
+
+- Start a new script: `AdvancedPlotting.R`
+
+```{r}
+library(palmerpenguins)
+library(tidyverse)
+theme_set(theme_bw())
+penguins
+```
+
+## Custom Scales
+
+
+- Our previous plot (now with `NA` values)
+
+```{r}
+#| output-location: column
+penguins |>
+  ggplot(
+    aes(body_mass_g, flipper_length_mm)
+  ) +
+  geom_point(
+    aes(colour = species, shape = sex), 
+    size = 2
+  ) +
+  scale_colour_brewer(palette = "Set1") +
+  scale_shape_manual(values = c(19, 1))
+```
+
+## Custom Scales {.slide-only .unlisted}
+
+- We've set `size` as a fixed value outside of `aes()`
+    + Will override any values set inside `aes()`
+    
+::: {.fragment}
+- Notice that `NA` values are now in the legend but blank
+    + We can set these by adding `na.value ` inside `scale_shape_manual()`
+    + Or apply `dplyr::filter(!is.na(sex))` before passing to `ggplot()`
+
+:::
+
+::: {.fragment}
+- To ensure intended mappings we can *name values*
+
+:::
+
+## Custom Scales {.slide-only .unlisted}
+
+::: {style="font-size:95%"}
+
+```{r}
+#| code-line-numbers: '11-12|1-13'
+#| output-location: column
+penguins |>
+  ggplot(
+    aes(body_mass_g, flipper_length_mm)
+  ) +
+  geom_point(
+    aes(colour = species, shape = sex), 
+    size = 2
+  ) +
+  scale_colour_brewer(palette = "Set1") +
+  scale_shape_manual(
+    values = c(female = 19, male = 1), 
+    na.value = 4
+  )
+```
+
+:::
+
+## Choosing Colours
+
+- Manual selection can also be applied to colours
+- The complete set of `r length(colours())` named colours is in the vector `colours()`
+
+```{r}
+colours() |> head(20)
+```
+
+## Choosing Colours {.slide-only .unlisted}
+
+- We can use `str_subset()` to find some options
+    + Note the all named colours are previewed in the `RStudio` Script Window
+
+```{r}
+colours() |> str_subset("blue")
+```
+
+
+
+## Choosing Colours {.slide-only .unlisted}
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '10-14|1-19'
+#| output-location: column
+penguins |>
+  ggplot(
+    aes(body_mass_g, flipper_length_mm)
+  ) +
+  geom_point(
+    aes(colour = species, shape = sex), 
+    size = 2
+  ) +
+  scale_colour_manual(
+    values = c(
+      Adelie = "indianred", 
+      Chinstrap = "skyblue4",
+      Gentoo = "forestgreen"
+    )
+  ) +
+  scale_shape_manual(
+    values = c(female = 19, male = 1), 
+    na.value = 4
+  )
+```
+
+:::
+
+## Choosing Colours {.slide-only .unlisted}
+
+- These can be defined as vectors and passed to every figure
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '1-5,14|1-18'
+#| output-location: column
+my_colours <- c(
+  Adelie = "indianred", 
+  Chinstrap = "skyblue4",
+  Gentoo = "forestgreen"
+)
+penguins |>
+  ggplot(
+    aes(body_mass_g, flipper_length_mm)
+  ) +
+  geom_point(
+    aes(colour = species, shape = sex), 
+    size = 2
+  ) +
+  scale_colour_manual(values = my_colours) +
+  scale_shape_manual(
+    values = c(female = 19, male = 1), 
+    na.value = 4
+  )
+```
+
+:::
+
+## RGB Colours
+
+- Colours can be defined using RGB format
+- Start with a `#` then two values for red (R), green (G) and blue (B)
+    + Values are hexadecimal: 0, 1, 2,..., 9, A, B, C, D, E, F
+    + Gives 256 increments for each channel
+    + `#000000` is all channels at zero $\implies$ *black*
+- Also previewed in RStudio:
+
+``` r
+## Full value in the Red & Green Channels without any blue: Yellow
+"#FFFF00"
+## Dim green a little & add some blue
+"#FFAA70"
+```
+
+- Try changing a few values to get the hang of it
+
+## Tweaking Labels
+
+- `female` and `male` can be set to title-case using `labels = str_to_title`
+    + `labels` takes a function and applies it to all labels
+
+```{r}
+#| code-line-numbers: '11|1-12'
+#| fig-show: hide
+penguins |>
+  ggplot(
+    aes(body_mass_g, flipper_length_mm)
+  ) +
+  geom_point(
+    aes(colour = species, shape = sex), size = 2
+  ) +
+  scale_colour_manual(values = my_colours) +
+  scale_shape_manual(
+    values = c(female = 19, male = 1), na.value = 4,
+    labels = str_to_title
+  )
+```
+
+## Tweaking Labels {.slide-only .unlisted}
+
+- `labels` can take functions using `\(x) some code modifying x `
+    + Known as *inline functions*
+
+```{r}
+#| code-line-numbers: '11|1-12'
+#| fig-show: hide
+penguins |>
+  ggplot(
+    aes(body_mass_g, flipper_length_mm)
+  ) +
+  geom_point(
+    aes(colour = species, shape = sex), size = 2
+  ) +
+  scale_colour_manual(values = my_colours) +
+  scale_shape_manual(
+    values = c(female = 19, male = 1), na.value = 4,
+    labels = \(x) x |> str_to_title() |> str_extract("^[MF]")
+  )
+```
+
+## Axis and Scale Titles
+
+::: {style="font-size:95%"}
+
+- Axis and Scale titles can be set using `labs()` or  `scale_*(name = )`
+- Both break the association between the source data and title
+
+```{r}
+#| code-line-numbers: '13-16|1-16'
+#| fig-show: hide
+penguins |>
+  ggplot(
+    aes(body_mass_g, flipper_length_mm)
+  ) +
+  geom_point(
+    aes(colour = species, shape = sex), size = 2
+  ) +
+  scale_colour_manual(values = my_colours) +
+  scale_shape_manual(
+    values = c(female = 19, male = 1), na.value = 4,
+    labels = \(x) x |> str_to_title() |> str_extract("^[MF]")
+  ) +
+  labs(
+    x = "Body Mass (g)", y = "Flipper Length (mm)",
+    colour = "Species", shape = "Sex"
+  )
+```
+
+:::
+
+# Themes {background-color="#3d3d40" background-image=https://raw.githubusercontent.com/rstudio/hex-stickers/main/PNG/ggplot2.png background-size="25%" background-opacity="0.4" background-position='80% 40%'}
+

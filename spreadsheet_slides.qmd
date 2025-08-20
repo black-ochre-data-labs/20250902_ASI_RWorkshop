@@ -760,15 +760,31 @@ my_penguins |>
   theme_bw()
 ```
 
-## Closing Comments
+# Closing Comments  {background-color="#3c3c44" background-image=https://allisonhorst.github.io/palmerpenguins/logo.png background-size="30%" background-opacity="0.4" background-position="80% 20%"}
 
+## The Palmer Penguins
+
+- The data we've been working with comes from the package `palmerpenguins`
+    + https://allisonhorst.github.io/palmerpenguins/index.html
+- `my_penguins` had all `NA` values removed for convenience
+
+::: {style="font-size:90%"}
+
+```{r}
+library(palmerpenguins)
+penguins
+```
+
+:::
+
+## Function Conflicts
 
 - Functions in `dplyr` are often based on `SQL` functions
     + `dplyr` was first released in 2014 [^1]
 - Some other packages already contained a `select()`, `filter()` etc
     + Especially those with a SQL back-end
 
-## Closing Comments {.slide-only .unlisted}
+## Function Conflicts {.slide-only .unlisted}
 
 - If a `dplyr` function gives a strange error <br>$\implies$ probably loaded another package with a function of the same name
 - Common cases are `select()`, `filter()`, `slice()`, `count()`, `n()`
@@ -777,8 +793,11 @@ my_penguins |>
 - The solution is to call explicitly from `dplyr` using the `namespace`
     + e.g. `dplyr::select()`, `dplyr::filter()`, `dplyr::count()` etc
     + The `namespace` is the formal title for all function names within a package
-    
+
 :::
 
+::: {.fragment}
+- The package `conflicted` also enables setting of which function to use
+:::
 
 [^1]: https://hadley.github.io/25-tidyverse-history/index-preview.html#key-innovations
