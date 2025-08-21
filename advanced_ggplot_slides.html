@@ -573,10 +573,291 @@ Dr Stevie Pederson
 </div>
 </div>
 </section></section>
+<section>
 <section id="themes" class="title-slide slide level1 center" data-background-color="#3d3d40" data-background-image="https://raw.githubusercontent.com/rstudio/hex-stickers/main/PNG/ggplot2.png" data-background-size="25%" data-background-opacity="0.4" data-background-position="80% 40%">
 <h1>Themes</h1>
 
 </section>
+<section id="themes-1" class="slide level2">
+<h2>Themes</h2>
+<ul>
+<li>The <code>theme()</code> layer provides control over general attributes
+<ul>
+<li>Font sizes, colours, types etc</li>
+<li>Axis lines, tick marks, labels</li>
+<li>Plot borders, fills, gridlines</li>
+<li>Legend position &amp; types</li>
+</ul></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Many attributes are set using elements:
+<ul>
+<li><code>element_text()</code>, <code>element_line()</code>, <code>element_rect()</code></li>
+<li><code>element_blank()</code></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="themes-2" class="slide level2 slide-only unlisted">
+<h2>Themes</h2>
+<ul>
+<li>Check the help page: <code>?theme</code> 😱</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Let’s save our plot as the object <code>p</code> <span class="math inline">\(\implies\)</span> then modify themes</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(body_mass_g, flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb15-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">colour =</span> species, <span class="at">shape =</span> sex), <span class="at">size =</span> <span class="dv">2</span></span>
+<span id="cb15-5"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> my_colours) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(</span>
+<span id="cb15-8"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="at">female =</span> <span class="dv">19</span>, <span class="at">male =</span> <span class="dv">1</span>), <span class="at">na.value =</span> <span class="dv">4</span>,</span>
+<span id="cb15-9"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> \(x) x <span class="sc">|&gt;</span> <span class="fu">str_to_title</span>() <span class="sc">|&gt;</span> <span class="fu">str_extract</span>(<span class="st">"^[MF]"</span>)</span>
+<span id="cb15-10"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-12"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Body Mass (g)"</span>, <span class="at">y =</span> <span class="st">"Flipper Length (mm)"</span>,</span>
+<span id="cb15-13"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"Species"</span>, <span class="at">shape =</span> <span class="st">"Sex"</span></span>
+<span id="cb15-14"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Palmer Penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="controlling-text-appearance" class="slide level2">
+<h2>Controlling Text Appearance</h2>
+<ul>
+<li>Set font size using <code>element_text()</code> <span class="math inline">\(\implies\)</span> titles, legends and axis text</li>
+</ul>
+<div style="font-size:90%">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="do">## Set the global font size for better </span></span>
+<span id="cb16-2"><a href=""></a><span class="do">## readability in presentations and</span></span>
+<span id="cb16-3"><a href=""></a><span class="do">## publications. Also try the arguments</span></span>
+<span id="cb16-4"><a href=""></a><span class="do">## family = "serif"</span></span>
+<span id="cb16-5"><a href=""></a><span class="do">## face = "italic"</span></span>
+<span id="cb16-6"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb16-7"><a href=""></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="advanced_ggplot_slides_files/figure-revealjs/unnamed-chunk-12-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="controlling-text-appearance-1" class="slide level2 slide-only unlisted">
+<h2>Controlling Text Appearance</h2>
+<ul>
+<li>Plot titles are left-aligned by default <span class="math inline">\(\implies\)</span> use <code>hjust</code></li>
+</ul>
+<div style="font-size:90%">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb17" data-code-line-numbers="1-8|1-3,7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="do">## `element_text()` can also be applied to </span></span>
+<span id="cb17-2"><a href=""></a><span class="do">## individual aspects, e.g. plot.title</span></span>
+<span id="cb17-3"><a href=""></a><span class="do">## hjust controls horizontal adjustment</span></span>
+<span id="cb17-4"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb17-5"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb17-6"><a href=""></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb17-7"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>)</span>
+<span id="cb17-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="advanced_ggplot_slides_files/figure-revealjs/unnamed-chunk-13-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="controlling-text-appearance-2" class="slide level2 slide-only unlisted">
+<h2>Controlling Text Appearance</h2>
+<ul>
+<li>Axis text can be rotated using <code>angle</code> (not great here)</li>
+</ul>
+<div style="font-size:90%">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="1-14|1-6,11-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="do">## The defaults for text don't look great</span></span>
+<span id="cb18-2"><a href=""></a><span class="do">## when rotating. Modifying placement using</span></span>
+<span id="cb18-3"><a href=""></a><span class="do">## hjust = 1 (right-aligned) and</span></span>
+<span id="cb18-4"><a href=""></a><span class="do">## vjust = 0.5 (centre aligned) helps.</span></span>
+<span id="cb18-5"><a href=""></a><span class="do">## vjust/hjust are always with respect to </span></span>
+<span id="cb18-6"><a href=""></a><span class="do">## text direction</span></span>
+<span id="cb18-7"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb18-8"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb18-9"><a href=""></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb18-10"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb18-11"><a href=""></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(</span>
+<span id="cb18-12"><a href=""></a>      <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">vjust =</span> <span class="fl">0.5</span></span>
+<span id="cb18-13"><a href=""></a>    )</span>
+<span id="cb18-14"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="advanced_ggplot_slides_files/figure-revealjs/unnamed-chunk-14-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="controlling-line-appearance" class="slide level2">
+<h2>Controlling Line Appearance</h2>
+<div style="font-size:90%">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb19" data-code-line-numbers="1-12|1-6,11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="do">## `element_line()` applies to grid-lines</span></span>
+<span id="cb19-2"><a href=""></a><span class="do">## using panel.grid.</span></span>
+<span id="cb19-3"><a href=""></a><span class="do">## Setting linetype = 2 will produce</span></span>
+<span id="cb19-4"><a href=""></a><span class="do">## dashed lines.</span></span>
+<span id="cb19-5"><a href=""></a><span class="do">## Also try experimenting with colour if</span></span>
+<span id="cb19-6"><a href=""></a><span class="do">## you like</span></span>
+<span id="cb19-7"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb19-8"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb19-9"><a href=""></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb19-10"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb19-11"><a href=""></a>    <span class="at">panel.grid =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb19-12"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="advanced_ggplot_slides_files/figure-revealjs/unnamed-chunk-15-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="removing-elements" class="slide level2">
+<h2>Removing Elements</h2>
+<div style="font-size:90%">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="1,2,7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="do">## Grid lines can be removed using </span></span>
+<span id="cb20-2"><a href=""></a><span class="do">## `element_blank()`</span></span>
+<span id="cb20-3"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb20-4"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb20-5"><a href=""></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>),</span>
+<span id="cb20-6"><a href=""></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb20-7"><a href=""></a>    <span class="at">panel.grid =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb20-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="advanced_ggplot_slides_files/figure-revealjs/unnamed-chunk-16-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+
+<section id="modifying-legends" class="slide level2">
+<h2>Modifying Legends</h2>
+<div style="font-size:90%">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="1-7|1-3,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="do">## Legend position can be set as</span></span>
+<span id="cb22-2"><a href=""></a><span class="do">## "top", "right", "bottom", </span></span>
+<span id="cb22-3"><a href=""></a><span class="do">## "left", "none" or "inside"</span></span>
+<span id="cb22-4"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb22-5"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-6"><a href=""></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb22-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="advanced_ggplot_slides_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="modifying-legends-1" class="slide level2 slide-only unlisted">
+<h2>Modifying Legends</h2>
+<div style="font-size:90%">
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb23" data-code-line-numbers="1-16|1-10,13-15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="do">## If placing the legend "inside", the</span></span>
+<span id="cb23-2"><a href=""></a><span class="do">## position is set using a vector with</span></span>
+<span id="cb23-3"><a href=""></a><span class="do">## values c(x, y)</span></span>
+<span id="cb23-4"><a href=""></a><span class="do">## The default is to place the centre of</span></span>
+<span id="cb23-5"><a href=""></a><span class="do">## the legend at that position.</span></span>
+<span id="cb23-6"><a href=""></a><span class="do">## Changing the justification from </span></span>
+<span id="cb23-7"><a href=""></a><span class="do">## c(0.5 ,0.5) to c(1, 0) </span></span>
+<span id="cb23-8"><a href=""></a><span class="do">## (i.e. right, bottom) tells theme which</span></span>
+<span id="cb23-9"><a href=""></a><span class="do">## part of the legend is placed at the </span></span>
+<span id="cb23-10"><a href=""></a><span class="do">## co-ordinates</span></span>
+<span id="cb23-11"><a href=""></a>p <span class="sc">+</span></span>
+<span id="cb23-12"><a href=""></a>  <span class="fu">theme</span>(</span>
+<span id="cb23-13"><a href=""></a>    <span class="at">legend.position =</span> <span class="st">"inside"</span>,</span>
+<span id="cb23-14"><a href=""></a>    <span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="fl">0.99</span>, <span class="fl">0.01</span>),</span>
+<span id="cb23-15"><a href=""></a>    <span class="at">legend.justification.inside =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb23-16"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="advanced_ggplot_slides_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<section id="saving-to-disk" class="slide level2">
+<h2>Saving To Disk</h2>
+<ul>
+<li>The most common strategy is to call <code>ggsave()</code></li>
+<li>Will automatically save the most recent plot</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="" aria-hidden="true" tabindex="-1"></a>?ggsave</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<ul>
+<li>File types are auto-detected from the suffix, e.g.&nbsp;<code>"my_plot.png"</code>
+<ul>
+<li>Writes to PDF, PNG, JPEG, TIFF, SVG, EPS etc</li>
+</ul></li>
+<li>Width &amp; Height are set using inches by default
+<ul>
+<li>Can be changed using <code>units = "cm"</code> or similar</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="saving-to-disk-1" class="slide level2 slide-only unlisted">
+<h2>Saving To Disk</h2>
+<ul>
+<li>May require multiple iterations getting font-sizes correct</li>
+<li>Try save near the size you expect:
+<ul>
+<li>Screen presentation and journals my be different</li>
+<li>Err on the side of large font sizes</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Save our last plot as a 7x7 inch PNG file</span></span>
+<span id="cb25-2"><a href="" aria-hidden="true" tabindex="-1"></a><span class="do">## Resolution can be set using dpi (default 300)</span></span>
+<span id="cb25-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"my_plot.png"</span>, <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="assets/bodl_logo_white_background.jpg" class="slide-logo"></p>

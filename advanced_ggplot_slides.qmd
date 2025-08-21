@@ -328,3 +328,264 @@ penguins |>
 
 # Themes {background-color="#3d3d40" background-image=https://raw.githubusercontent.com/rstudio/hex-stickers/main/PNG/ggplot2.png background-size="25%" background-opacity="0.4" background-position='80% 40%'}
 
+## Themes
+
+- The `theme()` layer provides control over general attributes
+    + Font sizes, colours, types etc
+    + Axis lines, tick marks, labels
+    + Plot borders, fills, gridlines
+    + Legend position & types
+    
+::: {.fragment}
+- Many attributes are set using elements:
+    + `element_text()`, `element_line()`, `element_rect()`
+    + `element_blank()`
+    
+:::
+
+## Themes {.slide-only .unlisted}
+
+- Check the help page: `?theme` &#128561;
+
+::: {.fragment}
+
+- Let's save our plot as the object `p` $\implies$ then modify themes
+
+```{r}
+p <- penguins |>
+  ggplot(aes(body_mass_g, flipper_length_mm)) +
+  geom_point(
+    aes(colour = species, shape = sex), size = 2
+  ) +
+  scale_colour_manual(values = my_colours) +
+  scale_shape_manual(
+    values = c(female = 19, male = 1), na.value = 4,
+    labels = \(x) x |> str_to_title() |> str_extract("^[MF]")
+  ) +
+  labs(
+    x = "Body Mass (g)", y = "Flipper Length (mm)",
+    colour = "Species", shape = "Sex"
+  ) +
+  ggtitle("Palmer Penguins")
+```
+
+
+:::
+
+## Controlling Text Appearance
+
+- Set font size using `element_text()` $\implies$ titles, legends and axis text
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: true
+#| output-location: column
+## Set the global font size for better 
+## readability in presentations and
+## publications. Also try the arguments
+## family = "serif"
+## face = "italic"
+p +
+  theme(text = element_text(size = 16))
+```
+
+:::
+
+## Controlling Text Appearance {.slide-only .unlisted}
+
+- Plot titles are left-aligned by default $\implies$ use `hjust`
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '1-8|1-3,7'
+#| output-location: column
+## `element_text()` can also be applied to 
+## individual aspects, e.g. plot.title
+## hjust controls horizontal adjustment
+p +
+  theme(
+    text = element_text(size = 16),
+    plot.title = element_text(hjust = 0.5)
+  )
+```
+
+:::
+
+## Controlling Text Appearance {.slide-only .unlisted}
+
+- Axis text can be rotated using `angle` (not great here)
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '1-14|1-6,11-13'
+#| output-location: column
+## The defaults for text don't look great
+## when rotating. Modifying placement using
+## hjust = 1 (right-aligned) and
+## vjust = 0.5 (centre aligned) helps.
+## vjust/hjust are always with respect to 
+## text direction
+p +
+  theme(
+    text = element_text(size = 16),
+    plot.title = element_text(hjust = 0.5),
+    axis.text.x = element_text(
+      angle = 90, hjust = 1, vjust = 0.5
+    )
+  )
+```
+
+:::
+
+## Controlling Line Appearance
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '1-12|1-6,11'
+#| output-location: column
+## `element_line()` applies to grid-lines
+## using panel.grid.
+## Setting linetype = 2 will produce
+## dashed lines.
+## Also try experimenting with colour if
+## you like
+p +
+  theme(
+    text = element_text(size = 16),
+    plot.title = element_text(hjust = 0.5),
+    panel.grid = element_line(linetype = 2)
+  )
+```
+
+:::
+
+## Removing Elements
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '1,2,7'
+#| output-location: column
+## Grid lines can be removed using 
+## `element_blank()`
+p +
+  theme(
+    text = element_text(size = 16),
+    plot.title = element_text(hjust = 0.5),
+    panel.grid = element_blank()
+  )
+```
+
+
+:::
+
+## Using `element_rect()` {visibility="hidden"}
+
+- The plotting region and overall panel use `element_rect()`
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '1-14|1-3,6-13'
+#| output-location: column
+## These are rarely required but if
+## needed, the plotting region and
+## panel with data are set separately
+p +
+  theme(
+    plot.background = element_rect(
+      fill = "orange3"
+    ),
+    panel.background = element_rect(
+      fill = "wheat"
+    )
+  )
+```
+
+:::
+
+## Modifying Legends
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '1-7|1-3,6'
+#| output-location: column
+## Legend position can be set as
+## "top", "right", "bottom", 
+## "left", "none" or "inside"
+p +
+  theme(
+    legend.position = "bottom"
+  )
+```
+
+:::
+
+## Modifying Legends {.slide-only .unlisted}
+
+::: {style="font-size:90%"}
+
+```{r}
+#| code-line-numbers: '1-16|1-10,13-15'
+#| output-location: column
+## If placing the legend "inside", the
+## position is set using a vector with
+## values c(x, y)
+## The default is to place the centre of
+## the legend at that position.
+## Changing the justification from 
+## c(0.5 ,0.5) to c(1, 0) 
+## (i.e. right, bottom) tells theme which
+## part of the legend is placed at the 
+## co-ordinates
+p +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.99, 0.01),
+    legend.justification.inside = c(1, 0)
+  )
+```
+
+:::
+
+## Saving To Disk
+
+- The most common strategy is to call `ggsave()`
+- Will automatically save the most recent plot
+
+```r
+?ggsave
+```
+
+::: {.fragment}
+
+- File types are auto-detected from the suffix, e.g. `"my_plot.png"`
+    + Writes to PDF, PNG, JPEG, TIFF, SVG, EPS etc
+- Width & Height are set using inches by default
+    + Can be changed using `units = "cm"` or similar
+
+:::
+
+
+
+## Saving To Disk {.slide-only .unlisted}
+
+
+- May require multiple iterations getting font-sizes correct
+- Try save near the size you expect:
+    + Screen presentation and journals my be different
+    + Err on the side of large font sizes
+
+
+```{r}
+#| eval: false
+## Save our last plot as a 7x7 inch PNG file
+## Resolution can be set using dpi (default 300)
+ggsave("my_plot.png", width = 7, height = 7)
+```
+
