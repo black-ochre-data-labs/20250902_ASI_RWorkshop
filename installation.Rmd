@@ -44,6 +44,7 @@ Ubuntu/Mint users can follow instructions provided [here](https://cran.r-project
 
 For Windows/OSX users, `R` can be downloaded and installed from [CRAN](https://cran.r-project.org/).
 Please choose the version for your operating system (OS).
+
 `RStudio` can be downloaded and installed [Posit](https://posit.co/download/rstudio-desktop/) with options for most operating systems.
 
 
