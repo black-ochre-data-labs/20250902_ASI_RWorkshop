@@ -104,8 +104,6 @@ Used to write Excel macros for fun whilst being a musician
 
 ## Who Am I? {.slide-only .unlisted}
 
-**Stephen (Stevie) Pederson** (They/Them)
-
 - R User for ~20 years $\implies$ learnt when R was difficult!
 - Senior Author of 7 Bioconductor Packages 
     + `ngsReports`, `extraChIPs`, `transmogR`, `motifTestR`
