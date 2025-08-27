@@ -22,7 +22,7 @@ Help is available, should you need it during the half hour before the workshop c
 
 | Day | Time | Location |
 |:---- |:---- |:-------- |
-| Tuesday 2nd September | 8:30am - 9:00am | EZONE Building, University of Western Australia |
+| Tuesday 2nd September | 8:30am - 9:00am | [Giumelli Learning Studio 4 (2.10), EZONE Building, University of Western Australia](assets/EZONE_Map.pdf) |
 
 **It is essential that you have access to a working installation before the workshop begins.**
 No time will be taken during the workshop to assist with this and *you will be significantly disadvantaged should you not have a working installation prior to attendance.*

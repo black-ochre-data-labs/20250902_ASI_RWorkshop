@@ -1,15 +1,17 @@
 ASI: Introduction to R
 ================
 Dr Stevie Pederson  
+Giumelli Learning Studio 4 (2.10)  
 EZONE Building  
 University of Western Australia
 
 2-3 September, 2025
 
-Run on behalf of the Australian & New Zealand Society of Immunologists
-
+Run on behalf of the Australian & New Zealand Society of Immunologists.
 Presented by Black Ochre Data Labs, The Kids Research Institute
 Australia
+
+A map of the EZONE building can be found [here](assets/EZONE_Map.pdf).
 
 ## Setup Instructions
 
