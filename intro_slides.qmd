@@ -143,13 +143,14 @@ Used to write Excel macros for fun whilst being a musician
 
 ## Why use R?
 
+- Can make amazing figures
+- Easy to manipulate data interactively
 - Heavily used for analysis of biological data (along with Python)
     - Can handle extremely large datasets  
     - Packages explicitly designed for complex analysis
     - Huge user base of biological researchers (www.bioconductor.org)
-    - (Can be) very fast
-- Very easy to *dynamically interact* with large datasets
-    - Can also run as scripts on HPC clusters
+- (Can be) very fast
+- Can also run as scripts on HPC clusters
     
 ::: {.notes}
 I regularly work with data containing millions of lines
@@ -242,14 +243,15 @@ Experience is the best teacher $\implies$ please practice your skills
 - $>$ 22,000 packages are stored on CRAN (https://cran.r-project.org)
     - Not curated for statistical quality or documentation
     - Automated testing for successful installation
+    - Packages updated as developers release updates
 
-::: {.fragment}
+## R Packages {.slide-only .unlisted}
 
 - Bioconductor is a secondary repository (https://www.bioconductor.org)
     - $>$ 3000 packages with a more biological/genomics focus
     - Curated for language consistency & documentation
+    - Packages updayed in bi-annual release cycle (except bug-fixes)
 
-:::
 
 ::: {.fragment}
 - Some packages also live on github or bitbucket

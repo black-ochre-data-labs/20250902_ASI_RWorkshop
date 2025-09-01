@@ -441,15 +441,13 @@ Dr Stevie Pederson
       }</style></aside>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="3-4,6-9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="do">## The initial call to ggplot defines</span></span>
-<span id="cb12-2"><a href=""></a><span class="do">## the data layer only.</span></span>
-<span id="cb12-3"><a href=""></a><span class="do">## Adding aesthetic mappings sets the </span></span>
-<span id="cb12-4"><a href=""></a><span class="do">## data range (via the axes)</span></span>
-<span id="cb12-5"><a href=""></a><span class="fu">ggplot</span>(my_penguins) <span class="sc">+</span></span>
-<span id="cb12-6"><a href=""></a>  <span class="fu">aes</span>(</span>
-<span id="cb12-7"><a href=""></a>    <span class="at">x =</span> body_mass_g, </span>
-<span id="cb12-8"><a href=""></a>    <span class="at">y =</span> flipper_length_mm</span>
-<span id="cb12-9"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="1,2,4-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="do">## Adding aesthetic mappings sets the </span></span>
+<span id="cb12-2"><a href=""></a><span class="do">## data range (via the axes)</span></span>
+<span id="cb12-3"><a href=""></a><span class="fu">ggplot</span>(my_penguins) <span class="sc">+</span></span>
+<span id="cb12-4"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb12-5"><a href=""></a>    <span class="at">x =</span> body_mass_g, </span>
+<span id="cb12-6"><a href=""></a>    <span class="at">y =</span> flipper_length_mm</span>
+<span id="cb12-7"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -472,18 +470,14 @@ Dr Stevie Pederson
 <h2>Adding Points</h2>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="5-6,12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="do">## The initial call to ggplot defines</span></span>
-<span id="cb13-2"><a href=""></a><span class="do">## the data layer only.</span></span>
-<span id="cb13-3"><a href=""></a><span class="do">## Adding aesthetic mappings sets the </span></span>
-<span id="cb13-4"><a href=""></a><span class="do">## data range (via the axes)</span></span>
-<span id="cb13-5"><a href=""></a><span class="do">## Adding `geom_point()` now tells</span></span>
-<span id="cb13-6"><a href=""></a><span class="do">## ggplot what geometry to use</span></span>
-<span id="cb13-7"><a href=""></a><span class="fu">ggplot</span>(my_penguins) <span class="sc">+</span></span>
-<span id="cb13-8"><a href=""></a>  <span class="fu">aes</span>(</span>
-<span id="cb13-9"><a href=""></a>    <span class="at">x =</span> body_mass_g, </span>
-<span id="cb13-10"><a href=""></a>    <span class="at">y =</span> flipper_length_mm</span>
-<span id="cb13-11"><a href=""></a>  ) <span class="sc">+</span></span>
-<span id="cb13-12"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="1,2,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="do">## Adding `geom_point()` now tells</span></span>
+<span id="cb13-2"><a href=""></a><span class="do">## ggplot what geometry to use</span></span>
+<span id="cb13-3"><a href=""></a><span class="fu">ggplot</span>(my_penguins) <span class="sc">+</span></span>
+<span id="cb13-4"><a href=""></a>  <span class="fu">aes</span>(</span>
+<span id="cb13-5"><a href=""></a>    <span class="at">x =</span> body_mass_g, </span>
+<span id="cb13-6"><a href=""></a>    <span class="at">y =</span> flipper_length_mm</span>
+<span id="cb13-7"><a href=""></a>  ) <span class="sc">+</span></span>
+<span id="cb13-8"><a href=""></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -735,7 +729,7 @@ Dr Stevie Pederson
 <li>The final grammar of graphics layer <span class="math inline">\(\implies\)</span> themes</li>
 <li>Controls overall appearance:
 <ul>
-<li>fontsizes, background style, title/legend placement etc</li>
+<li>font-sizes, background style, title/legend placement etc</li>
 </ul></li>
 <li>Will explore in detail later if we have time</li>
 </ul>
@@ -836,10 +830,7 @@ Dr Stevie Pederson
 <section id="histograms" class="slide level2">
 <h2>Histograms</h2>
 <ul>
-<li>The default histogram usually looks terrible
-<ul>
-<li>Very easy to fix</li>
-</ul></li>
+<li>The default histogram usually looks terrible <span class="math inline">\(\implies\)</span> easy to fix</li>
 </ul>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
@@ -861,9 +852,8 @@ Dr Stevie Pederson
 <section id="histograms-1" class="slide level2 slide-only unlisted">
 <h2>Histograms</h2>
 <ul>
-<li>The default histogram usually looks terrible
+<li>The default histogram usually looks terrible <span class="math inline">\(\implies\)</span> easy to fix
 <ul>
-<li>Very easy to fix</li>
 <li>Changing <code>binwidth</code> and setting <code>colour</code> (outline)</li>
 </ul></li>
 </ul>
@@ -871,9 +861,11 @@ Dr Stevie Pederson
 <div class="column">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_penguins) <span class="sc">+</span></span>
 <span id="cb29-2"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">fill =</span> sex) <span class="sc">+</span></span>
-<span id="cb29-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
-<span id="cb29-4"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(sex<span class="sc">~</span>species) <span class="sc">+</span></span>
-<span id="cb29-5"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-3"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb29-4"><a href="" aria-hidden="true" tabindex="-1"></a>    <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">binwidth =</span> <span class="dv">100</span></span>
+<span id="cb29-5"><a href="" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(sex<span class="sc">~</span>species) <span class="sc">+</span></span>
+<span id="cb29-7"><a href="" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">

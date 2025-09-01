@@ -65,6 +65,7 @@ knitr:
 `R` and `RStudio` are **two separate but connected things**
 
 - `R` is like the engine of your car
+    + We've just tinkered with the engine
     
 ::: {.fragment}
 
@@ -658,6 +659,6 @@ rnd["b"]
 
 - We've also (accidentally) learned about vectors
     + Will be super helpful for the rest of the workshop
-    + Also the most fundamental structure in `R`
+- **Vectors are the most fundamental structure in `R`**
 
 :::

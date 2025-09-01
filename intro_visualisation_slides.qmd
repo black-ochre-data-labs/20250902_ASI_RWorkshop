@@ -218,10 +218,8 @@ ggplot(my_penguins)
 :::
 
 ```{r}
-#| code-line-numbers: '3-4,6-9'
+#| code-line-numbers: '1,2,4-7'
 #| output-location: column
-## The initial call to ggplot defines
-## the data layer only.
 ## Adding aesthetic mappings sets the 
 ## data range (via the axes)
 ggplot(my_penguins) +
@@ -241,12 +239,8 @@ ggplot(my_penguins) +
 ## Adding Points
 
 ```{r}
-#| code-line-numbers: '5-6,12'
+#| code-line-numbers: '1,2,8'
 #| output-location: column
-## The initial call to ggplot defines
-## the data layer only.
-## Adding aesthetic mappings sets the 
-## data range (via the axes)
 ## Adding `geom_point()` now tells
 ## ggplot what geometry to use
 ggplot(my_penguins) +
@@ -474,7 +468,7 @@ ggplot(my_penguins) + # 1: Define the data layer
 
 - The final grammar of graphics layer $\implies$ themes
 - Controls overall appearance: 
-    + fontsizes, background style, title/legend placement etc
+    + font-sizes, background style, title/legend placement etc
 - Will explore in detail later if we have time
 
 ::: {.fragment}
@@ -555,11 +549,11 @@ ggplot(my_penguins) +
 
 ## Histograms
 
-- The default histogram usually looks terrible
-    + Very easy to fix
+- The default histogram usually looks terrible $\implies$ easy to fix
 
 ```{r}
 #| output-location: column
+#| fig-height: 5
 ## Map sex to the fill aesthetic
 ggplot(my_penguins) +
   aes(x = body_mass_g, fill = sex) +
@@ -570,15 +564,17 @@ ggplot(my_penguins) +
 
 ## Histograms {.slide-only .unlisted}
 
-- The default histogram usually looks terrible
-    + Very easy to fix
+- The default histogram usually looks terrible $\implies$ easy to fix
     + Changing `binwidth` and setting `colour` (outline)
 
 ```{r}
 #| output-location: column
+#| fig-height: 5
 ggplot(my_penguins) +
   aes(x = body_mass_g, fill = sex) +
-  geom_histogram(colour = "black", binwidth = 100) +
+  geom_histogram(
+    colour = "black", binwidth = 100
+  ) +
   facet_grid(sex~species) +
   theme_bw()
 ```

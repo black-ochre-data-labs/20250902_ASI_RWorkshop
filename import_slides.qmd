@@ -633,7 +633,7 @@ read_csv(
 All `arguments` for the function were defined somewhere in the GUI.
 
 1. Open the GUI Preview by clicking on the file again
-2. Uncheck the `First Row as Names` checkbox
+2. Uncheck the `First Row as Names` check-box
 
 ![](assets/importGUI.png){width="900px"}
 
@@ -642,7 +642,7 @@ All `arguments` for the function were defined somewhere in the GUI.
 All `arguments` for the function were defined somewhere in the GUI.
 
 1. Open the GUI Preview by clicking on the file again
-2. Uncheck the `First Row as Names` checkbox
+2. Uncheck the `First Row as Names` check-box
     + *What happened to the code?*
     + *How did the columns change?*
     

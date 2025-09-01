@@ -81,7 +81,7 @@ Wrangling text is a common task using `R`
 
 ::: {.fragment}
 - Extracting key information from filenames
-    + "sample01_treat.bam", "sample01_control.bam"
+    + "passage01_treat.bam", "passage01_control.bam"
     
 :::
 
