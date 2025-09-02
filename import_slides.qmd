@@ -138,7 +138,7 @@ Mention my former collaborator who would often have completely different results
 
 
 1. Download the file `data.zip` from the workshop homepage
-2. Place in your directory `RAdelaide25`
+2. Place in your directory `R_Training`
 3. `Extract to here` which should create a folder named `data`
 
 ::: {.callout-tip collapse="true"}
