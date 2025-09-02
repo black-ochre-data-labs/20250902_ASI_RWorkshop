@@ -104,6 +104,7 @@ library(tidyverse)
 - If `R` ran an assembly line making toy cars
 
 ``` r
+hot_plastic <- heat(plastic)
 step1 <- mould(hot_plastic)
 step2 <- paint(step1, "red")
 step3 <- attach_wheels(step2)
@@ -115,7 +116,8 @@ final_car <- package(step3)
 - Using the `|>` operator this might become
 
 ``` r
-final_car <- hot_plastic |>
+final_car <- plastic |>
+  heat() |>
   mould() |>
   paint("red") |>
   attach_wheels() |>

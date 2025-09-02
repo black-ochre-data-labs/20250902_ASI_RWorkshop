@@ -2408,7 +2408,6 @@ display: none;
   <li><a href="#producing-tables" id="toc-producing-tables" class="nav-link" data-scroll-target="#producing-tables">Producing Tables</a></li>
   <li><a href="#analysing-data" id="toc-analysing-data" class="nav-link" data-scroll-target="#analysing-data">Analysing Data</a></li>
   <li><a href="#creating-summary-tables" id="toc-creating-summary-tables" class="nav-link" data-scroll-target="#creating-summary-tables">Creating Summary Tables</a></li>
-  <li><a href="#other-chunk-options" id="toc-other-chunk-options" class="nav-link" data-scroll-target="#other-chunk-options">Other Chunk Options</a></li>
   <li><a href="#complete-the-analysis" id="toc-complete-the-analysis" class="nav-link" data-scroll-target="#complete-the-analysis">Complete the Analysis</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#advanced-options" id="toc-advanced-options" class="nav-link" data-scroll-target="#advanced-options">Advanced Options</a></li>
@@ -3296,22 +3295,6 @@ F-statistic: 41.56 on 5 and 54 DF,  p-value: &lt; 2.2e-16</code></pre>
 <li><code>gt</code> is popular with some</li>
 <li><code>xtable</code> is excellent for <span class="math inline">\(\LaTeX\)</span> output</li>
 </ul>
-</section>
-<section id="other-chunk-options" class="level2">
-<h2 class="anchored" data-anchor-id="other-chunk-options">Other Chunk Options</h2>
-<ul>
-<li>Here’s my <code>setup</code> chunk for this presentation</li>
-</ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">include =</span> <span class="cn">TRUE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">fig.align =</span> <span class="st">&quot;center&quot;</span>, <span class="at">results =</span> <span class="st">&#39;hide&#39;</span>, <span class="at">fig.show =</span> <span class="st">&quot;asis&quot;</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fig.width =</span> <span class="dv">6</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment">
-<ul>
-<li>When you’ve seen my results, I’ve set <code>results = &#39;asis&#39;</code> in that chunk header</li>
-</ul>
-</div>
 </section>
 <section id="complete-the-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="complete-the-analysis">Complete the Analysis</h2>

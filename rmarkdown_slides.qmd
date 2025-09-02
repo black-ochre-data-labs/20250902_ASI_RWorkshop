@@ -666,23 +666,6 @@ knitr::opts_chunk$set(eval = FALSE)
 - `xtable` is excellent for $\LaTeX$ output
 
     
-## Other Chunk Options
-
-- Here's my `setup` chunk for this presentation
-
-```r
-knitr::opts_chunk$set(
-  echo = TRUE, include = TRUE, warning = FALSE, message = FALSE, 
-  fig.align = "center", results = 'hide', fig.show = "asis",
-  fig.width = 6
-)
-```
-
-::: {.fragment}
-
-- When you've seen my results, I've set `results = 'asis'` in that chunk header
-
-:::
 
 ## Complete the Analysis
 
